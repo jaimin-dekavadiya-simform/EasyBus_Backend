@@ -23,6 +23,7 @@ export default [
       'prettier/prettier': 'error',
       'no-console': 'warn',
     },
+    ignores: ['dist', 'node_modules'],
   },
 
   configPrettier,
