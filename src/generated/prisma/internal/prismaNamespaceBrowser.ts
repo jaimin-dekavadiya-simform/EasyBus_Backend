@@ -47,10 +47,7 @@ export const JsonNull = runtime.JsonNull;
  */
 export const AnyNull = runtime.AnyNull;
 
-export const ModelName = {
-  User: 'User',
-  Post: 'Post',
-} as const;
+export const ModelName = {} as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 
@@ -67,42 +64,3 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 
 export type TransactionIsolationLevel =
   (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
-
-export const UserScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  name: 'name',
-} as const;
-
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
-
-export const PostScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  content: 'content',
-  published: 'published',
-  authorId: 'authorId',
-} as const;
-
-export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum];
-
-export const SortOrder = {
-  asc: 'asc',
-  desc: 'desc',
-} as const;
-
-export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
-
-export const QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive',
-} as const;
-
-export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
-
-export const NullsOrder = {
-  first: 'first',
-  last: 'last',
-} as const;
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];

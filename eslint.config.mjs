@@ -23,7 +23,7 @@ export default [
       'prettier/prettier': 'error',
       'no-console': 'warn',
     },
-    ignores: ['dist', 'node_modules', 'prisma.config.ts'],
+    ignores: ['dist', 'node_modules', 'prisma.config.ts', './src/generated/*'],
   },
 
   configPrettier,
