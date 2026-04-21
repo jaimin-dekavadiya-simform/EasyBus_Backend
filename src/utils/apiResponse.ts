@@ -1,11 +1,11 @@
 import { HttpStatusCode } from '@/types/utils.types';
 
-class ApiResponse {
+class ApiResponse<T> {
   public statusCode: HttpStatusCode;
-  public data: object;
+  public data: T;
   public message: string;
   public success: boolean;
-  constructor(statusCode: HttpStatusCode, data: object, message: string = 'Success') {
+  constructor(statusCode: HttpStatusCode, data: T, message: string = 'Success') {
     this.statusCode = statusCode;
     this.data = data;
     this.message = message;
