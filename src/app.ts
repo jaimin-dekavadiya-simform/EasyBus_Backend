@@ -1,11 +1,10 @@
 import express from 'express';
 import { globalErrorHandler } from './middleware/errorHandler.middleware';
+import UserRouter from './features/user/user.route';
 
 const app = express();
 
 app.use(express.json());
-app.get('/', (_, res) => {
-  res.send('API is running 🚀');
-});
+app.use('/api/users', UserRouter);
 app.use(globalErrorHandler);
 export default app;

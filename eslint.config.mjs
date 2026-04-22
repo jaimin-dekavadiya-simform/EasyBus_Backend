@@ -22,6 +22,12 @@ export default [
     rules: {
       'prettier/prettier': 'error',
       'no-console': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+        },
+      ],
     },
     ignores: ['dist', 'node_modules', 'prisma.config.ts', './src/generated/*'],
   },
