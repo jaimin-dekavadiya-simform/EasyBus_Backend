@@ -5,6 +5,7 @@ class ApiError extends Error {
   public override message: string;
   public success: boolean;
   public errors: Error[] | undefined;
+
   constructor(statusCode: HttpStatusCode, message: string, errors?: Error[]) {
     super(message);
     this.statusCode = statusCode;
