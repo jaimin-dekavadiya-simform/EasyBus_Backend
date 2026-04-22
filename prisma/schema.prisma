@@ -11,3 +11,40 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model User {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  role         UserRole
+
+  orgId            String?       @map("org_id") @db.Uuid
+  organisation     Organisation? @relation(fields: [orgId], references: [id])
+  employeeCode     String?       @map("employee_code")
+  isVerified       Boolean       @default(false) @map("is_verified")
+  refreshTokenHash String?       @map("refresh_token_hash")
+  createdAt        DateTime      @default(now()) @map("created_at")
+  updatedAt        DateTime      @updatedAt @map("updated_at")
+
+  @@unique([orgId, employeeCode])
+  @@index([orgId])
+  @@index([role])
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ORG_ADMIN
+  OPERATOR
+  CONDUCTOR
+  PASSENGER
+}
+
+model Organisation {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId     String   @unique @map("tenant_id")
+  name         String
+  contactEmail String   @map("contact_email")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  users User[]
+}
