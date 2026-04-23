@@ -1,6 +1,6 @@
 import { VerificationMailData } from '@/types/mailer.types';
 
-export function compileVerificationMailTemplate(data: VerificationMailData): string {
+export const compileVerificationMailTemplate = (data: VerificationMailData) => {
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,4 +71,4 @@ export function compileVerificationMailTemplate(data: VerificationMailData): str
 </body>
 </html>`;
   return html;
-}
+};

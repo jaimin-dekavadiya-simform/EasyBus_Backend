@@ -1,8 +1,12 @@
-import { randomBytes } from 'node:crypto';
+import { randomBytes, createHash } from 'node:crypto';
 import bcrypt from 'bcrypt';
-export function generateToken() {
+
+export const generateToken = () => {
   return randomBytes(32).toString('hex');
-}
-export async function hashToken(pass: string) {
+};
+export const hashPassword = async (pass: string) => {
   return bcrypt.hash(pass, 10);
-}
+};
+export const hashToken = (token: string) => {
+  return createHash('sha256').update(token).digest('hex');
+};

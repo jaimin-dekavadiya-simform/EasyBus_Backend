@@ -1,6 +1,6 @@
 import { prisma } from '@/config/prisma';
 import { RegisterUserInput } from './auth.schema';
-import { hashToken, generateToken } from '@/utils/crypto.utils';
+import { hashToken, generateToken, hashPassword } from '@/utils/crypto.utils';
 import ApiError from '@/utils/apiError';
 import { EmailService } from '@/utils/email/email.service';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
@@ -8,7 +8,7 @@ import { User } from '@/generated/prisma/client';
 import { HttpStatusCode } from '@/types/utils.types';
 
 export const registerUserService = async (data: RegisterUserInput) => {
-  const hashedPassword = await hashToken(data.password);
+  const hashedPassword = await hashPassword(data.password);
 
   let user: User;
   try {
@@ -35,7 +35,7 @@ export const registerUserService = async (data: RegisterUserInput) => {
       'base url missing in environment variables',
     );
   }
-  const url = `${baseUrl}/verifyEmail?token=${token}`;
+  const url = `${baseUrl}/api/auth/verifyEmail?token=${token}`;
   try {
     await EmailService.sendVerificationMail(user.email, { url: url, name: user.name });
   } catch (error) {
@@ -45,9 +45,9 @@ export const registerUserService = async (data: RegisterUserInput) => {
   return user;
 };
 
-export async function createVerificationRecord(user: User) {
+export const createVerificationRecord = async (user: User) => {
   const token = generateToken();
-  const hashedToken = await hashToken(token);
+  const hashedToken = hashToken(token);
   const expireTime = Number(process.env.VERIFICATION_TOKEN_EXPIRY_TIME || 5);
   const expiresAt = new Date(Date.now() + expireTime * 60 * 1000);
   await prisma.emailVerifications.create({
@@ -58,4 +58,25 @@ export async function createVerificationRecord(user: User) {
     },
   });
   return token;
-}
+};
+
+export const verifyEmailService = async (data: { token: string }) => {
+  const token = data.token;
+
+  const hashedToken = hashToken(token);
+  const verificationRecord = await prisma.emailVerifications.findUnique({
+    where: { token: hashedToken },
+  });
+
+  if (!verificationRecord) {
+    throw new ApiError(HttpStatusCode.BAD_REQUEST, 'Invalid Token');
+  }
+  if (verificationRecord.expiresAt < new Date()) {
+    throw new ApiError(HttpStatusCode.BAD_REQUEST, 'Expired Token');
+  }
+  await prisma.user.update({
+    data: { isVerified: true },
+    where: { id: verificationRecord.userId },
+  });
+  return;
+};

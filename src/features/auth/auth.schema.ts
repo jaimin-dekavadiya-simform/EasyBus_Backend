@@ -8,4 +8,11 @@ export const registerUserSchema = z.object({
   }),
 });
 
+export const verifyEmailSchema = z.object({
+  query: z.object({
+    token: z.string().min(10),
+  }),
+});
+
+export type VerifyEmailInput = z.infer<typeof verifyEmailSchema>;
 export type RegisterUserInput = z.infer<typeof registerUserSchema>['body'];
