@@ -1,7 +1,6 @@
 import { prisma } from '@/config/prisma';
-import { RegisterUserInput } from './user.schema';
-import { hashToken } from '@/utils/crypto.utils';
-import { createVerificationRecord } from '../verification/verification.service';
+import { RegisterUserInput } from './auth.schema';
+import { hashToken, generateToken } from '@/utils/crypto.utils';
 import ApiError from '@/utils/apiError';
 import { EmailService } from '@/utils/email/email.service';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
@@ -45,3 +44,18 @@ export const registerUserService = async (data: RegisterUserInput) => {
 
   return user;
 };
+
+export async function createVerificationRecord(user: User) {
+  const token = generateToken();
+  const hashedToken = await hashToken(token);
+  const expireTime = Number(process.env.VERIFICATION_TOKEN_EXPIRY_TIME || 5);
+  const expiresAt = new Date(Date.now() + expireTime * 60 * 1000);
+  await prisma.emailVerifications.create({
+    data: {
+      userId: user.id,
+      token: hashedToken,
+      expiresAt: expiresAt,
+    },
+  });
+  return token;
+}

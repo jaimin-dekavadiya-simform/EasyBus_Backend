@@ -57,7 +57,7 @@ model EmailVerifications {
   id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
   userId String @map("user_id") @db.Uuid
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   token     String   @unique
   expiresAt DateTime @map("expires_at")
