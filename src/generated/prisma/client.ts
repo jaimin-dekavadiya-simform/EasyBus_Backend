@@ -52,3 +52,13 @@ export type User = Prisma.UserModel;
  *
  */
 export type Organisation = Prisma.OrganisationModel;
+/**
+ * Model EmailVerifications
+ *
+ */
+export type EmailVerifications = Prisma.EmailVerificationsModel;
+/**
+ * Model PasswordReset
+ *
+ */
+export type PasswordReset = Prisma.PasswordResetModel;

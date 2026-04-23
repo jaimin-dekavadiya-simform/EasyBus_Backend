@@ -9,4 +9,6 @@
  */
 export type * from './models/User';
 export type * from './models/Organisation';
+export type * from './models/EmailVerifications';
+export type * from './models/PasswordReset';
 export type * from './commonInputTypes';

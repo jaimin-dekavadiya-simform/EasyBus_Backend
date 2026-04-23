@@ -50,6 +50,8 @@ export const AnyNull = runtime.AnyNull;
 export const ModelName = {
   User: 'User',
   Organisation: 'Organisation',
+  EmailVerifications: 'EmailVerifications',
+  PasswordReset: 'PasswordReset',
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
@@ -70,6 +72,7 @@ export type TransactionIsolationLevel =
 
 export const UserScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   email: 'email',
   passwordHash: 'passwordHash',
   role: 'role',
@@ -93,6 +96,27 @@ export const OrganisationScalarFieldEnum = {
 
 export type OrganisationScalarFieldEnum =
   (typeof OrganisationScalarFieldEnum)[keyof typeof OrganisationScalarFieldEnum];
+
+export const EmailVerificationsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  token: 'token',
+  expiresAt: 'expiresAt',
+} as const;
+
+export type EmailVerificationsScalarFieldEnum =
+  (typeof EmailVerificationsScalarFieldEnum)[keyof typeof EmailVerificationsScalarFieldEnum];
+
+export const PasswordResetScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  token: 'token',
+  expiresAt: 'expiresAt',
+  usedAt: 'usedAt',
+} as const;
+
+export type PasswordResetScalarFieldEnum =
+  (typeof PasswordResetScalarFieldEnum)[keyof typeof PasswordResetScalarFieldEnum];
 
 export const SortOrder = {
   asc: 'asc',
