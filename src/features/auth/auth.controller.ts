@@ -1,0 +1,22 @@
+import { ApiResponse } from '@/utils/apiResponse';
+import { registerUserService, verifyEmailService } from './auth.service';
+import { RequestHandler } from 'express';
+import { HttpStatusCode } from '@/types/utils.types';
+import { VerifyEmailInput } from './auth.schema';
+
+export const registerUser: RequestHandler = async (req, res): Promise<void> => {
+  const user = await registerUserService(req.body);
+
+  ApiResponse.sendJsonResponse(
+    res,
+    HttpStatusCode.CREATED,
+    { name: user.name, email: user.email },
+    'user created Successfully',
+  );
+};
+
+export const verifyEmail: RequestHandler = async (req, res): Promise<void> => {
+  await verifyEmailService(req.query as VerifyEmailInput['query']);
+
+  ApiResponse.sendJsonResponse(res, HttpStatusCode.OK, {}, 'Email Verified Successfully');
+};
