@@ -7,7 +7,7 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
 import { User } from '@/generated/prisma/client';
 import { HttpStatusCode } from '@/types/utils.types';
 
-export const registerUserService = async (data: RegisterUserInput) => {
+export const registerUserService = async (data: RegisterUserInput): Promise<User> => {
   const hashedPassword = await hashPassword(data.password);
 
   let user: User;
@@ -37,7 +37,7 @@ export const registerUserService = async (data: RegisterUserInput) => {
   }
   const url = `${baseUrl}/api/auth/verifyEmail?token=${token}`;
   try {
-    await EmailService.sendVerificationMail(user.email, { url: url, name: user.name });
+    EmailService.sendVerificationMail(user.email, { url: url, name: user.name });
   } catch (error) {
     console.log('Email Service Failed, Error :' + error);
   }
@@ -45,7 +45,7 @@ export const registerUserService = async (data: RegisterUserInput) => {
   return user;
 };
 
-export const createVerificationRecord = async (user: User) => {
+export const createVerificationRecord = async (user: User): Promise<string> => {
   const token = generateToken();
   const hashedToken = hashToken(token);
   const expireTime = Number(process.env.VERIFICATION_TOKEN_EXPIRY_TIME || 5);
@@ -60,7 +60,7 @@ export const createVerificationRecord = async (user: User) => {
   return token;
 };
 
-export const verifyEmailService = async (data: { token: string }) => {
+export const verifyEmailService = async (data: { token: string }): Promise<void> => {
   const token = data.token;
 
   const hashedToken = hashToken(token);
@@ -78,5 +78,4 @@ export const verifyEmailService = async (data: { token: string }) => {
     data: { isVerified: true },
     where: { id: verificationRecord.userId },
   });
-  return;
 };

@@ -1,6 +1,6 @@
 import { VerificationMailData } from '@/types/mailer.types';
 
-export const compileVerificationMailTemplate = (data: VerificationMailData) => {
+export const compileVerificationMailTemplate = (data: VerificationMailData): string => {
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>

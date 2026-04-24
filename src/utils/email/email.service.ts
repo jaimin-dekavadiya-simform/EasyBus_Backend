@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendEmail = async (options: SendEmailOptions) => {
+const sendEmail = async (options: SendEmailOptions): Promise<void> => {
   await transporter.sendMail({
     from: `"EasyBus" <${process.env.EMAIL_USER}>`,
     to: options.to,
@@ -21,8 +21,10 @@ const sendEmail = async (options: SendEmailOptions) => {
 };
 
 export class EmailService {
-  static async sendVerificationMail(email: string, data: VerificationMailData) {
+  static sendVerificationMail(email: string, data: VerificationMailData): void {
     const html = compileVerificationMailTemplate(data);
-    sendEmail({ to: email, subject: 'Email Verification', html: html });
+    sendEmail({ to: email, subject: 'Email Verification', html: html }).catch((err) => {
+      console.log('Email Servie Failed ', err);
+    });
   }
 }

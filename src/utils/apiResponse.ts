@@ -11,7 +11,12 @@ class ApiResponse<T> {
     this.message = message;
     this.success = statusCode < 400;
   }
-  static sendJsonResponse<U>(res: Response, statusCode: HttpStatusCode, data: U, message: string) {
+  static sendJsonResponse<U>(
+    res: Response,
+    statusCode: HttpStatusCode,
+    data: U,
+    message: string,
+  ): void {
     res.status(statusCode).json(new ApiResponse<U>(statusCode, data, message));
   }
 }
