@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 import { SendEmailOptions, VerificationMailData } from '@/types/mailer.types';
-import { compileVerificationMailTemplate } from './email.tamplates';
+import { compileVerificationMailTemplate } from './email.templates';
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
