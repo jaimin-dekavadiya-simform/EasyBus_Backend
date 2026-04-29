@@ -9,6 +9,7 @@ import { HttpStatusCode } from '@/types/utils.types';
 import { createUser } from '../user/user.repository';
 import { UserRoles } from '@/types/user.types';
 import { generateToken, verifyToken } from '@/utils/auth.utils';
+import { config } from '@/config/env';
 
 export const registerUserService = async (data: RegisterUserInput): Promise<User> => {
   const hashedPassword = await hashPassword(data.password);
@@ -28,10 +29,10 @@ export const registerUserService = async (data: RegisterUserInput): Promise<User
   }
   const emailVerificationToken = generateToken(
     { userId: user.id },
-    process.env.VERIFICATION_TOKEN_SECRET || 'thisissecrete',
-    '1d',
+    config.jwt.verification.secret,
+    config.jwt.verification.expiry,
   );
-  const baseUrl = process.env.VERIFICATION_BASE_URL;
+  const baseUrl = config.jwt.verification.baseUrl;
   if (!baseUrl) {
     throw new ApiError(
       HttpStatusCode.INTERNAL_SERVER_ERROR,
@@ -49,10 +50,7 @@ export const registerUserService = async (data: RegisterUserInput): Promise<User
 
 export const verifyEmailService = async (data: { token: string }): Promise<void> => {
   const token = data.token;
-  const payload = verifyToken<{ userId: string }>(
-    token,
-    process.env.VERIFICATION_TOKEN_SECRET || 'thisisdefaultsecret',
-  );
+  const payload = verifyToken<{ userId: string }>(token, config.jwt.verification.secret);
   await prisma.user.update({
     data: { isVerified: true },
     where: { id: payload.userId },
