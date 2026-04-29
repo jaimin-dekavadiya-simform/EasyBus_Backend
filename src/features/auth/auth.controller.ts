@@ -6,7 +6,6 @@ import { VerifyEmailInput } from './auth.schema';
 
 export const registerUser: RequestHandler = async (req, res): Promise<void> => {
   const user = await registerUserService(req.body);
-
   ApiResponse.sendJsonResponse(
     res,
     HttpStatusCode.CREATED,
@@ -16,7 +15,6 @@ export const registerUser: RequestHandler = async (req, res): Promise<void> => {
 };
 
 export const verifyEmail: RequestHandler = async (req, res): Promise<void> => {
-  await verifyEmailService(req.query as VerifyEmailInput['query']);
-
+  await verifyEmailService(req.query as VerifyEmailInput);
   ApiResponse.sendJsonResponse(res, HttpStatusCode.OK, {}, 'Email Verified Successfully');
 };

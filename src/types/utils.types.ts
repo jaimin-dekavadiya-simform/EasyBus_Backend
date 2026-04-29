@@ -1,10 +1,11 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express';
+import { UserRoles } from './user.types';
 
-type TasyncHandler = (
+export type TasyncHandler = (
   func: RequestHandler,
 ) => (req: Request, res: Response, next: NextFunction) => void;
 
-enum HttpStatusCode {
+export enum HttpStatusCode {
   OK = 200,
   CREATED = 201,
 
@@ -16,6 +17,14 @@ enum HttpStatusCode {
 
   INTERNAL_SERVER_ERROR = 500,
 }
-
-export type { TasyncHandler };
-export { HttpStatusCode };
+export enum ValidationTarget {
+  BODY = 'body',
+  QUERY = 'query',
+  PARAMS = 'params',
+}
+type intervalSuffix = 'ms' | 's' | 'm' | 'd' | 'w' | 'y';
+export type TimeInterval = `${number}${intervalSuffix}`;
+export interface UserJwtPayload {
+  userId: string;
+  role: UserRoles;
+}

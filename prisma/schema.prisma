@@ -27,12 +27,10 @@ model User {
   createdAt        DateTime      @default(now()) @map("created_at")
   updatedAt        DateTime      @updatedAt @map("updated_at")
 
-  emailVerification EmailVerifications[]
-  passwordResets    PasswordReset[]
-
   @@unique([orgId, employeeCode])
   @@index([orgId])
   @@index([role])
+  @@map("users")
 }
 
 enum UserRole {
@@ -51,30 +49,4 @@ model Organisation {
   createdAt    DateTime @default(now()) @map("created_at")
 
   users User[]
-}
-
-model EmailVerifications {
-  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-
-  userId String @map("user_id") @db.Uuid
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
-  token     String   @unique
-  expiresAt DateTime @map("expires_at")
-
-  @@index([token])
-  @@map("email_verifications")
-}
-
-model PasswordReset {
-  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId    String    @map("user_id") @db.Uuid
-  token     String    @unique
-  expiresAt DateTime  @map("expires_at")
-  usedAt    DateTime? @map("used_at")
-
-  user User @relation(fields: [userId], references: [id])
-
-  @@index([token])
-  @@map("password_resets")
 }
