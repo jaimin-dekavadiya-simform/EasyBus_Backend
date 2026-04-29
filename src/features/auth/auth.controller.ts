@@ -9,7 +9,7 @@ export const registerUser: RequestHandler = async (req, res): Promise<void> => {
   ApiResponse.sendJsonResponse(
     res,
     HttpStatusCode.CREATED,
-    { name: user.name, email: user.email },
+    { first_name: user.first_name, last_name: user.last_name, email: user.email },
     'user created Successfully',
   );
 };

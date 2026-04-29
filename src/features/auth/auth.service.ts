@@ -16,7 +16,8 @@ export const registerUserService = async (data: RegisterUserInput): Promise<User
   let user: User;
   try {
     user = await createUser({
-      name: data.name,
+      first_name: data.first_name,
+      last_name: data.last_name,
       email: data.email,
       passwordHash: hashedPassword,
       role: UserRoles.PASSENGER,
@@ -41,7 +42,7 @@ export const registerUserService = async (data: RegisterUserInput): Promise<User
   }
   const url = `${baseUrl}/api/auth/verifyEmail?token=${emailVerificationToken}`;
   try {
-    EmailService.sendVerificationMail(user.email, { url: url, name: user.name });
+    EmailService.sendVerificationMail(user.email, { url: url, name: user.first_name });
   } catch (error) {
     console.log('Email Service Failed, Error :' + error);
   }

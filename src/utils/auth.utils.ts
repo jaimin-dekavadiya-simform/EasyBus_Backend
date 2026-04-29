@@ -11,7 +11,7 @@ export const generateToken = <T extends object>(
   return jwt.sign(payload, secret, { expiresIn: expiry });
 };
 
-export const verifyToken = <T>(token: string, secret: string): T => {
+export const verifyToken = <T extends object>(token: string, secret: string): T => {
   try {
     return jwt.verify(token, secret) as T;
   } catch (error) {
