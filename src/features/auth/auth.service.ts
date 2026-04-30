@@ -1,4 +1,3 @@
-import { prisma } from '@/config/prisma';
 import { RegisterUserInput } from './auth.schema';
 import { hashPassword } from '@/utils/crypto.utils';
 import ApiError from '@/utils/apiError';
@@ -6,7 +5,7 @@ import { EmailService } from '@/utils/email/email.service';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
 import { User } from '@/generated/prisma/client';
 import { HttpStatusCode } from '@/types/utils.types';
-import { createUser } from '../user/user.repository';
+import { createUser, updateUserById } from '../user/user.repository';
 import { UserRoles } from '@/types/user.types';
 import { generateToken, verifyToken } from '@/utils/auth.utils';
 import { config } from '@/config/env';
@@ -52,8 +51,5 @@ export const registerUserService = async (data: RegisterUserInput): Promise<User
 export const verifyEmailService = async (data: { token: string }): Promise<void> => {
   const token = data.token;
   const payload = verifyToken<{ userId: string }>(token, config.jwt.verification.secret);
-  await prisma.user.update({
-    data: { isVerified: true },
-    where: { id: payload.userId },
-  });
+  await updateUserById(payload.userId, { isVerified: true });
 };
