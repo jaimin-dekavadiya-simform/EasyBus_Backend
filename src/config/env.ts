@@ -11,15 +11,44 @@ const envSchema = z.object({
       if (Number.isNaN(parsed)) throw new Error('PORT must be a number');
       return parsed;
     }),
-  DATABASE_URL: z.url(),
+  DATABASE_URL: z
+    .string()
+    .min(1, 'DATABASE_URL is required')
+    .refine(
+      (url) => {
+        try {
+          const parsed = new URL(url);
+          const validProtocol =
+            parsed.protocol === 'postgres:' || parsed.protocol === 'postgresql:';
+          const hasHost = !!parsed.hostname;
+          const hasDbName = !!parsed.pathname;
+          const hasUser = !!parsed.username;
+          const hasValidPort =
+            !parsed.port || (Number(parsed.port) > 0 && Number(parsed.port) <= 65535);
+          return validProtocol && hasHost && hasDbName && hasUser && hasValidPort;
+        } catch {
+          return false;
+        }
+      },
+      {
+        message:
+          'Invalid PostgreSQL URL. Expected format: postgres://user:password@host:port/dbname',
+      },
+    ),
 
-  ACCESS_TOKEN_SECRET: z.string().min(1, 'ACCESS_TOKEN_SECRET is required'),
+  ACCESS_TOKEN_SECRET: z
+    .string()
+    .min(16, 'ACCESS_TOKEN_SECRET is required and should be longer than 16 characters'),
   ACCESS_TOKEN_EXPIRY: z.string().default('1d'),
 
-  REFRESH_TOKEN_SECRET: z.string().min(1, 'REFRESH_TOKEN_SECRET is required'),
+  REFRESH_TOKEN_SECRET: z
+    .string()
+    .min(16, 'REFRESH_TOKEN_SECRET is required and should be longer than 16 characters'),
   REFRESH_TOKEN_EXPIRY: z.string().default('7d'),
 
-  VERIFICATION_TOKEN_SECRET: z.string().min(1, 'VERIFICATION_TOKEN_SECRET is required'),
+  VERIFICATION_TOKEN_SECRET: z
+    .string()
+    .min(16, 'VERIFICATION_TOKEN_SECRET is required and should be longer than 16 characters'),
   VERIFICATION_TOKEN_EXPIRY: z.string().default('5m'),
   VERIFICATION_BASE_URL: z.url(),
 

@@ -22,8 +22,6 @@ export enum ValidationTarget {
   QUERY = 'query',
   PARAMS = 'params',
 }
-type intervalSuffix = 'ms' | 's' | 'm' | 'd' | 'w' | 'y';
-export type TimeInterval = `${number}${intervalSuffix}`;
 export interface UserJwtPayload {
   userId: string;
   role: UserRoles;
