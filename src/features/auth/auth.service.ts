@@ -1,13 +1,13 @@
-import { RegisterUserInput } from './auth.schema';
-import { hashPassword } from '@/utils/crypto.utils';
+import { RegisterUserInput, LoginUserInput } from './auth.schema';
+import { comparePasswordHash, hashPassword, hashToken } from '@/utils/crypto.utils';
 import ApiError from '@/utils/apiError';
-import { EmailService } from '@/utils/email/email.service';
+import { sendVerificationMail } from '@/utils/email/email.service';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
 import { User } from '@/generated/prisma/client';
 import { HttpStatusCode } from '@/types/utils.types';
-import { createUser, updateUserById } from '../user/user.repository';
+import { createUser, findUserByEmail, updateUserById } from '../user/user.repository';
 import { UserRoles } from '@/types/user.types';
-import { generateToken, verifyToken } from '@/utils/auth.utils';
+import { generateJwtToken, verifyToken } from '@/utils/auth.utils';
 import { config } from '@/config/env';
 
 export const registerUserService = async (data: RegisterUserInput): Promise<User> => {
@@ -27,24 +27,7 @@ export const registerUserService = async (data: RegisterUserInput): Promise<User
     }
     throw error;
   }
-  const emailVerificationToken = generateToken(
-    { userId: user.id },
-    config.jwt.verification.secret,
-    config.jwt.verification.expiry,
-  );
-  const baseUrl = config.jwt.verification.baseUrl;
-  if (!baseUrl) {
-    throw new ApiError(
-      HttpStatusCode.INTERNAL_SERVER_ERROR,
-      'base url missing in environment variables',
-    );
-  }
-  const url = `${baseUrl}/api/auth/verifyEmail?token=${emailVerificationToken}`;
-  try {
-    EmailService.sendVerificationMail(user.email, { url: url, name: user.first_name });
-  } catch (error) {
-    console.log('Email Service Failed, Error :' + error);
-  }
+  sendVerificationMail(user);
   return user;
 };
 
@@ -52,4 +35,30 @@ export const verifyEmailService = async (data: { token: string }): Promise<void>
   const token = data.token;
   const payload = verifyToken<{ userId: string }>(token, config.jwt.verification.secret);
   await updateUserById(payload.userId, { isVerified: true });
+};
+
+export const loginUserService = async (
+  data: LoginUserInput,
+): Promise<{ accessToken: string; refreshToken: string }> => {
+  const user = await findUserByEmail(data.email);
+  if (!user) {
+    throw new ApiError(HttpStatusCode.BAD_REQUEST, 'Invalid Credentials');
+  }
+  if (!user.isVerified) {
+    throw new ApiError(HttpStatusCode.UNAUTHORIZED, 'User not verified');
+  }
+  const isCorrect = await comparePasswordHash(data.password, user.passwordHash);
+  if (!isCorrect) {
+    throw new ApiError(HttpStatusCode.BAD_REQUEST, 'Invalid Credentials');
+  }
+  const payload = { userId: user.id, role: user.role, orgId: user.orgId };
+  const accessToken = generateJwtToken(payload, config.jwt.access.secret, config.jwt.access.expiry);
+  const refreshToken = generateJwtToken(
+    { userId: user.id },
+    config.jwt.refresh.secret,
+    config.jwt.refresh.expiry,
+  );
+  const hashedRefreshToken = hashToken(refreshToken);
+  await updateUserById(user.id, { refreshTokenHash: hashedRefreshToken });
+  return { accessToken, refreshToken };
 };

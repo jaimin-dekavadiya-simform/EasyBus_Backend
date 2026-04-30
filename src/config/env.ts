@@ -1,5 +1,5 @@
 import { z } from 'zod';
-
+import ms, { StringValue } from 'ms';
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
 
@@ -39,17 +39,62 @@ const envSchema = z.object({
   ACCESS_TOKEN_SECRET: z
     .string()
     .min(16, 'ACCESS_TOKEN_SECRET is required and should be longer than 16 characters'),
-  ACCESS_TOKEN_EXPIRY: z.string().default('1d'),
+  ACCESS_TOKEN_EXPIRY: z
+    .string()
+    .default('1d')
+    .refine(
+      (val) => {
+        try {
+          const result = ms(val as StringValue);
+          return typeof result === 'number';
+        } catch {
+          return false;
+        }
+      },
+      {
+        message: "Invalid time format. Use values like '15m', '1h', '7d'",
+      },
+    ),
 
   REFRESH_TOKEN_SECRET: z
     .string()
     .min(16, 'REFRESH_TOKEN_SECRET is required and should be longer than 16 characters'),
-  REFRESH_TOKEN_EXPIRY: z.string().default('7d'),
+  REFRESH_TOKEN_EXPIRY: z
+    .string()
+    .default('7d')
+    .refine(
+      (val) => {
+        try {
+          const result = ms(val as StringValue);
+          return typeof result === 'number';
+        } catch {
+          return false;
+        }
+      },
+      {
+        message: "Invalid time format. Use values like '15m', '1h', '7d'",
+      },
+    ),
 
   VERIFICATION_TOKEN_SECRET: z
     .string()
     .min(16, 'VERIFICATION_TOKEN_SECRET is required and should be longer than 16 characters'),
-  VERIFICATION_TOKEN_EXPIRY: z.string().default('5m'),
+  VERIFICATION_TOKEN_EXPIRY: z
+    .string()
+    .default('5m')
+    .refine(
+      (val) => {
+        try {
+          const result = ms(val as StringValue);
+          return typeof result === 'number';
+        } catch {
+          return false;
+        }
+      },
+      {
+        message: "Invalid time format. Use values like '15m', '1h', '7d'",
+      },
+    ),
   VERIFICATION_BASE_URL: z.url(),
 
   EMAIL_USER: z.email(),
@@ -74,15 +119,15 @@ export const config = {
   jwt: {
     access: {
       secret: env.ACCESS_TOKEN_SECRET,
-      expiry: env.ACCESS_TOKEN_EXPIRY,
+      expiry: env.ACCESS_TOKEN_EXPIRY as StringValue,
     },
     refresh: {
       secret: env.REFRESH_TOKEN_SECRET,
-      expiry: env.REFRESH_TOKEN_EXPIRY,
+      expiry: env.REFRESH_TOKEN_EXPIRY as StringValue,
     },
     verification: {
       secret: env.VERIFICATION_TOKEN_SECRET,
-      expiry: env.VERIFICATION_TOKEN_EXPIRY,
+      expiry: env.VERIFICATION_TOKEN_EXPIRY as StringValue,
       baseUrl: env.VERIFICATION_BASE_URL,
     },
   },

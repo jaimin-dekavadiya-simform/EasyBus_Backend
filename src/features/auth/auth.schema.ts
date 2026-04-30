@@ -12,9 +12,12 @@ export const registerUserSchema = z.object({
     ),
 });
 
+export const loginUserSchema = registerUserSchema.omit({ first_name: true, last_name: true });
+
 export const verifyEmailSchema = z.object({
   token: z.string(),
 });
 
 export type VerifyEmailInput = z.infer<typeof verifyEmailSchema>;
 export type RegisterUserInput = z.infer<typeof registerUserSchema>;
+export type LoginUserInput = z.infer<typeof loginUserSchema>;

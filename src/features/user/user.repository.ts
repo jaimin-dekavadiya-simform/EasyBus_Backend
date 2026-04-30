@@ -11,3 +11,10 @@ export const updateUserById = async (id: string, user: UserUpdateInput): Promise
   const updatedUser = await prisma.user.update({ data: user, where: { id } });
   return updatedUser;
 };
+
+export const findUserByEmail = async (email: string): Promise<User | null> => {
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+  return user;
+};
