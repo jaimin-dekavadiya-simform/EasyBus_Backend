@@ -7,7 +7,7 @@ export const registerUserSchema = z.object({
   password: z
     .string()
     .regex(
-      /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}$/,
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/,
       'Password must include uppercase, lowercase, number, special character and be at least 8 characters long',
     ),
 });

@@ -8,7 +8,7 @@ const envSchema = z.object({
     .default('3000')
     .transform((val) => {
       const parsed = Number(val);
-      if (isNaN(parsed)) throw new Error('PORT must be a number');
+      if (Number.isNaN(parsed)) throw new Error('PORT must be a number');
       return parsed;
     }),
   DATABASE_URL: z.url(),
