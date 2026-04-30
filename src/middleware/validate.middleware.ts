@@ -1,9 +1,9 @@
 import { ZodError, ZodObject } from 'zod';
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { ValidationTarget } from '@/types/utils.types';
 
 export const validate =
-  (schema: ZodObject, validationTarget: ValidationTarget) =>
+  (schema: ZodObject, validationTarget: ValidationTarget): RequestHandler =>
   (req: Request, res: Response, next: NextFunction) => {
     try {
       schema.parse(req[validationTarget]);
@@ -16,5 +16,6 @@ export const validate =
           errors: error.issues,
         });
       }
+      return next(error);
     }
   };

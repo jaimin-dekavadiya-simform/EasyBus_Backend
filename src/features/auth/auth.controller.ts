@@ -37,3 +37,17 @@ export const loginUser: RequestHandler = async (req, res): Promise<void> => {
   });
   ApiResponse.sendJsonResponse(res, HttpStatusCode.OK, {}, 'User Authenticated Successfully');
 };
+
+export const logoutUser: RequestHandler = async (_req, res): Promise<void> => {
+  res.clearCookie('accessToken', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict',
+  });
+  res.clearCookie('refreshToken', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict',
+  });
+  ApiResponse.sendJsonResponse(res, HttpStatusCode.OK, {}, 'User Logged out Successfully');
+};

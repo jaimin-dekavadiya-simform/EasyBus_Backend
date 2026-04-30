@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { loginUser, registerUser, verifyEmail } from './auth.controller';
+import { loginUser, logoutUser, registerUser, verifyEmail } from './auth.controller';
 import { validate } from '@/middleware/validate.middleware';
 import { loginUserSchema, registerUserSchema, verifyEmailSchema } from './auth.schema';
 import { asyncHandler } from '@/utils/asyncHandler';
@@ -12,6 +12,7 @@ router.post(
   asyncHandler(registerUser),
 );
 router.post('/login', validate(loginUserSchema, ValidationTarget.BODY), asyncHandler(loginUser));
+router.post('/logout', asyncHandler(logoutUser));
 router.get(
   '/verifyEmail',
   validate(verifyEmailSchema, ValidationTarget.QUERY),
