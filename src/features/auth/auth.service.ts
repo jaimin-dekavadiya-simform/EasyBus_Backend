@@ -15,8 +15,8 @@ export const registerUserService = async (data: RegisterUserInput): Promise<User
   let user: User;
   try {
     user = await createUser({
-      first_name: data.first_name,
-      last_name: data.last_name,
+      firstName: data.first_name,
+      lastName: data.last_name,
       email: data.email,
       passwordHash: hashedPassword,
       role: UserRoles.PASSENGER,

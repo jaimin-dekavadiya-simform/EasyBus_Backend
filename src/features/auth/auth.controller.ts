@@ -11,7 +11,7 @@ export const registerUser: RequestHandler = async (req, res): Promise<void> => {
   ApiResponse.sendJsonResponse(
     res,
     HttpStatusCode.CREATED,
-    { first_name: user.first_name, last_name: user.last_name, email: user.email },
+    { first_name: user.firstName, last_name: user.lastName, email: user.email },
     'user created Successfully',
   );
 };

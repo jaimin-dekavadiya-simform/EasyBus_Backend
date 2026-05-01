@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express';
 import { UserRoles } from './user.types';
+import { UserRole } from '@/generated/prisma/enums';
 
 export type TasyncHandler = (
   func: RequestHandler,
@@ -26,3 +27,8 @@ export interface UserJwtPayload {
   userId: string;
   role: UserRoles;
 }
+export type AuthUser = {
+  userId: string;
+  role: UserRole;
+  orgId: string | null;
+};

@@ -38,7 +38,7 @@ export const sendVerificationMail = (user: User): void => {
     );
   }
   const url = `${baseUrl}/api/auth/verifyEmail?token=${emailVerificationToken}`;
-  const html = compileVerificationMailTemplate({ url, name: user.first_name });
+  const html = compileVerificationMailTemplate({ url, name: user.firstName });
   sendEmail({ to: user.email, subject: 'Email Verification', html: html }).catch((err) => {
     console.log('Email Servie Failed ', err);
   });
