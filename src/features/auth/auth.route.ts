@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { loginUser, logoutUser, registerUser, verifyEmail } from './auth.controller';
+import { loginUser, logoutUser, registerUser, verifyEmail, verifyUser } from './auth.controller';
 import { validate } from '@/middleware/validate.middleware';
 import { loginUserSchema, registerUserSchema, verifyEmailSchema } from './auth.schema';
 import { asyncHandler } from '@/utils/asyncHandler';
@@ -20,5 +20,6 @@ router.get(
   validate(verifyEmailSchema, ValidationTarget.QUERY),
   asyncHandler(verifyEmail),
 );
+router.get('/me', authenticateUser, asyncHandler(verifyUser));
 
 export default router;

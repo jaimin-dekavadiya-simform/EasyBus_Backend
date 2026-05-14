@@ -5,7 +5,7 @@ import { sendVerificationMail } from '@/utils/email/email.service';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
 import { User } from '@/generated/prisma/client';
 import { HttpStatusCode } from '@/types/utils.types';
-import { createUser, findUserByEmail, updateUserById } from '../user/user.repository';
+import { createUser, findUserByEmail, findUserById, updateUserById } from '../user/user.repository';
 import { UserRoles } from '@/types/user.types';
 import { generateJwtToken, verifyToken } from '@/utils/auth.utils';
 import { config } from '@/config/env';
@@ -15,8 +15,8 @@ export const registerUserService = async (data: RegisterUserInput): Promise<User
   let user: User;
   try {
     user = await createUser({
-      firstName: data.first_name,
-      lastName: data.last_name,
+      firstName: data.firstName,
+      lastName: data.lastName,
       email: data.email,
       passwordHash: hashedPassword,
       role: UserRoles.PASSENGER,
@@ -39,7 +39,7 @@ export const verifyEmailService = async (data: { token: string }): Promise<void>
 
 export const loginUserService = async (
   data: LoginUserInput,
-): Promise<{ accessToken: string; refreshToken: string }> => {
+): Promise<{ accessToken: string; refreshToken: string; user: User }> => {
   const user = await findUserByEmail(data.email);
   if (!user) {
     throw new ApiError(HttpStatusCode.BAD_REQUEST, 'Invalid Credentials');
@@ -60,5 +60,13 @@ export const loginUserService = async (
   );
   const hashedRefreshToken = hashToken(refreshToken);
   await updateUserById(user.id, { refreshTokenHash: hashedRefreshToken });
-  return { accessToken, refreshToken };
+  return { accessToken, refreshToken, user };
+};
+
+export const getUserService = async (data: { userId: string }): Promise<User> => {
+  const user = await findUserById(data.userId);
+  if (!user) {
+    throw new ApiError(HttpStatusCode.BAD_REQUEST, 'User not found');
+  }
+  return user;
 };

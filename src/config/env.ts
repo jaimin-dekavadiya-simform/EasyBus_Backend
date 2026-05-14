@@ -11,6 +11,7 @@ const envSchema = z.object({
       if (Number.isNaN(parsed)) throw new Error('PORT must be a number');
       return parsed;
     }),
+  ALLOWED_CORS_ORIGIN: z.url(),
   DATABASE_URL: z
     .string()
     .min(1, 'DATABASE_URL is required')
@@ -114,6 +115,7 @@ export const config = {
   app: {
     env: env.NODE_ENV,
     port: env.PORT,
+    allowedOrigin: env.ALLOWED_CORS_ORIGIN,
   },
 
   jwt: {

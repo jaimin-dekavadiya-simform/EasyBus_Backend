@@ -1,5 +1,10 @@
 import { ApiResponse } from '@/utils/apiResponse';
-import { loginUserService, registerUserService, verifyEmailService } from './auth.service';
+import {
+  getUserService,
+  loginUserService,
+  registerUserService,
+  verifyEmailService,
+} from './auth.service';
 import { RequestHandler } from 'express';
 import { HttpStatusCode } from '@/types/utils.types';
 import { VerifyEmailInput } from './auth.schema';
@@ -22,20 +27,31 @@ export const verifyEmail: RequestHandler = async (req, res): Promise<void> => {
 };
 
 export const loginUser: RequestHandler = async (req, res): Promise<void> => {
-  const tokens = await loginUserService(req.body);
-  res.cookie('accessToken', tokens.accessToken, {
+  const data = await loginUserService(req.body);
+  res.cookie('accessToken', data.accessToken, {
     httpOnly: true,
     secure: true,
     sameSite: 'strict',
     maxAge: ms(config.jwt.access.expiry),
   });
-  res.cookie('refreshToken', tokens.refreshToken, {
+  res.cookie('refreshToken', data.refreshToken, {
     httpOnly: true,
     secure: true,
     sameSite: 'strict',
     maxAge: ms(config.jwt.refresh.expiry),
   });
-  ApiResponse.sendJsonResponse(res, HttpStatusCode.OK, {}, 'User Authenticated Successfully');
+  ApiResponse.sendJsonResponse(
+    res,
+    HttpStatusCode.OK,
+    {
+      firstName: data.user.firstName,
+      lastName: data.user.lastName,
+      role: data.user.role,
+      id: data.user.id,
+      email: data.user.email,
+    },
+    'User Authenticated Successfully',
+  );
 };
 
 export const logoutUser: RequestHandler = async (_req, res): Promise<void> => {
@@ -50,4 +66,21 @@ export const logoutUser: RequestHandler = async (_req, res): Promise<void> => {
     sameSite: 'strict',
   });
   ApiResponse.sendJsonResponse(res, HttpStatusCode.OK, {}, 'User Logged out Successfully');
+};
+
+export const verifyUser: RequestHandler = async (req, res): Promise<void> => {
+  const user = await getUserService({ userId: req.user!.userId });
+  res.status(HttpStatusCode.OK).json(
+    new ApiResponse(
+      HttpStatusCode.OK,
+      {
+        email: user.email,
+        userId: user.id,
+        role: user.role,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      },
+      'user authenticated',
+    ),
+  );
 };
