@@ -10,3 +10,9 @@ export const hashPassword = async (pass: string): Promise<string> => {
 export const hashToken = (token: string): string => {
   return createHash('sha256').update(token).digest('hex');
 };
+export const comparePasswordHash = async (
+  password: string,
+  passwordHash: string,
+): Promise<boolean> => {
+  return bcrypt.compare(password, passwordHash);
+};

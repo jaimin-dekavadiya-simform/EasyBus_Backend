@@ -1,19 +1,25 @@
 import { Router } from 'express';
-import { registerUser, verifyEmail } from './auth.controller';
+import { loginUser, logoutUser, registerUser, verifyEmail, verifyUser } from './auth.controller';
 import { validate } from '@/middleware/validate.middleware';
-import { registerUserSchema, verifyEmailSchema } from './auth.schema';
+import { loginUserSchema, registerUserSchema, verifyEmailSchema } from './auth.schema';
 import { asyncHandler } from '@/utils/asyncHandler';
 import { ValidationTarget } from '@/types/utils.types';
+import { authenticateUser } from '@/middleware/auth.middleware';
 
 const router = Router();
+
 router.post(
   '/register',
   validate(registerUserSchema, ValidationTarget.BODY),
   asyncHandler(registerUser),
 );
+router.post('/login', validate(loginUserSchema, ValidationTarget.BODY), asyncHandler(loginUser));
+router.post('/logout', authenticateUser, asyncHandler(logoutUser));
 router.get(
   '/verifyEmail',
   validate(verifyEmailSchema, ValidationTarget.QUERY),
   asyncHandler(verifyEmail),
 );
+router.get('/me', authenticateUser, asyncHandler(verifyUser));
+
 export default router;

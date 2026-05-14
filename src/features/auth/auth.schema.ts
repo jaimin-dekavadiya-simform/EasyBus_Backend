@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 export const registerUserSchema = z.object({
-  first_name: z.string().min(3),
-  last_name: z.string().min(3),
+  firstName: z.string().min(3),
+  lastName: z.string().min(3),
   email: z.email(),
   password: z
     .string()
@@ -12,9 +12,12 @@ export const registerUserSchema = z.object({
     ),
 });
 
+export const loginUserSchema = registerUserSchema.omit({ firstName: true, lastName: true });
+
 export const verifyEmailSchema = z.object({
   token: z.string(),
 });
 
 export type VerifyEmailInput = z.infer<typeof verifyEmailSchema>;
 export type RegisterUserInput = z.infer<typeof registerUserSchema>;
+export type LoginUserInput = z.infer<typeof loginUserSchema>;

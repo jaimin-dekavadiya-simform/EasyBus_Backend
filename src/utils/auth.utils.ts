@@ -2,7 +2,7 @@ import jwt, { SignOptions, Secret } from 'jsonwebtoken';
 import ApiError from './apiError';
 const { JsonWebTokenError, TokenExpiredError } = jwt;
 
-export const generateToken = <T extends object>(
+export const generateJwtToken = <T extends object>(
   payload: T,
   secret: Secret,
   expiresIn: string,

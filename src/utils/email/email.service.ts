@@ -1,7 +1,11 @@
+import ApiError from '@/utils/apiError';
 import nodemailer from 'nodemailer';
-import { SendEmailOptions, VerificationMailData } from '@/types/mailer.types';
+import { SendEmailOptions } from '@/types/mailer.types';
 import { compileVerificationMailTemplate } from './email.templates';
-
+import { config } from '@/config/env';
+import { generateJwtToken } from '../auth.utils';
+import { User } from '@/generated/prisma/client';
+import { HttpStatusCode } from '@/types/utils.types';
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -20,11 +24,22 @@ const sendEmail = async (options: SendEmailOptions): Promise<void> => {
   });
 };
 
-export class EmailService {
-  static sendVerificationMail(email: string, data: VerificationMailData): void {
-    const html = compileVerificationMailTemplate(data);
-    sendEmail({ to: email, subject: 'Email Verification', html: html }).catch((err) => {
-      console.log('Email Servie Failed ', err);
-    });
+export const sendVerificationMail = (user: User): void => {
+  const emailVerificationToken = generateJwtToken(
+    { userId: user.id },
+    config.jwt.verification.secret,
+    config.jwt.verification.expiry,
+  );
+  const baseUrl = config.jwt.verification.baseUrl;
+  if (!baseUrl) {
+    throw new ApiError(
+      HttpStatusCode.INTERNAL_SERVER_ERROR,
+      'base url missing in environment variables',
+    );
   }
-}
+  const url = `${baseUrl}/api/auth/verifyEmail?token=${emailVerificationToken}`;
+  const html = compileVerificationMailTemplate({ url, name: user.firstName });
+  sendEmail({ to: user.email, subject: 'Email Verification', html: html }).catch((err) => {
+    console.log('Email Servie Failed ', err);
+  });
+};
