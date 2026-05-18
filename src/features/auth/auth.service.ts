@@ -1,4 +1,4 @@
-import { RegisterUserInput, LoginUserInput } from './auth.schema';
+import { RegisterUserInput, LoginUserInput, ResendUserEmailImput } from './auth.schema';
 import { comparePasswordHash, hashPassword, hashToken } from '@/utils/crypto.utils';
 import ApiError from '@/utils/apiError';
 import { sendVerificationMail } from '@/utils/email/email.service';
@@ -29,6 +29,26 @@ export const registerUserService = async (data: RegisterUserInput): Promise<User
   }
   sendVerificationMail(user);
   return user;
+};
+
+export const resendEmailService = async (data: ResendUserEmailImput): Promise<void> => {
+  const user = await findUserByEmail(data.email);
+  if (user) {
+    sendVerificationMail(user);
+  } else {
+    throw new ApiError(HttpStatusCode.BAD_REQUEST, 'User does not Exists');
+  }
+};
+
+export const checkUserVerification = async (data: RegisterUserInput): Promise<User | null> => {
+  const user = await findUserByEmail(data.email);
+  if (user && user.isVerified) {
+    throw new ApiError(HttpStatusCode.CONFLICT, 'Email already registered');
+  } else if (user) {
+    sendVerificationMail(user);
+    return user;
+  }
+  return null;
 };
 
 export const verifyEmailService = async (data: { token: string }): Promise<void> => {

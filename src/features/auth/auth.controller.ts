@@ -1,8 +1,10 @@
 import { ApiResponse } from '@/utils/apiResponse';
 import {
+  checkUserVerification,
   getUserService,
   loginUserService,
   registerUserService,
+  resendEmailService,
   verifyEmailService,
 } from './auth.service';
 import { RequestHandler } from 'express';
@@ -12,12 +14,16 @@ import { config } from '@/config/env';
 import ms from 'ms';
 
 export const registerUser: RequestHandler = async (req, res): Promise<void> => {
-  const user = await registerUserService(req.body);
+  const user = await checkUserVerification(req.body);
+  if (user) {
+    ApiResponse.sendJsonResponse(res, HttpStatusCode.OK, user.email, 'User not verified');
+  }
+  const registeredUser = await registerUserService(req.body);
   ApiResponse.sendJsonResponse(
     res,
     HttpStatusCode.CREATED,
-    { first_name: user.firstName, last_name: user.lastName, email: user.email },
-    'user created Successfully',
+    registeredUser.email,
+    'User created successfully',
   );
 };
 
@@ -83,4 +89,9 @@ export const verifyUser: RequestHandler = async (req, res): Promise<void> => {
       'user authenticated',
     ),
   );
+};
+
+export const resendEmail: RequestHandler = async (req, res): Promise<void> => {
+  await resendEmailService(req.body);
+  ApiResponse.sendJsonResponse(res, HttpStatusCode.OK, {}, 'Email Sent Successfully');
 };
