@@ -25,4 +25,4 @@ export const resendEmailSchema = z.object({
 export type VerifyEmailInput = z.infer<typeof verifyEmailSchema>;
 export type RegisterUserInput = z.infer<typeof registerUserSchema>;
 export type LoginUserInput = z.infer<typeof loginUserSchema>;
-export type ResendUserEmailImput = z.infer<typeof resendEmailSchema>;
+export type ResendUserEmailInput = z.infer<typeof resendEmailSchema>;

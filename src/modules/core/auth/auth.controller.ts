@@ -8,7 +8,7 @@ import {
   verifyEmailService,
 } from './auth.service';
 import { RequestHandler } from 'express';
-import { HttpStatusCode } from '@/types/utils.types';
+import { HttpStatusCode, StatusMessage } from '@/types/utils.types';
 import { VerifyEmailInput } from './auth.validation';
 import { config } from '@/config/env';
 import ms from 'ms';
@@ -16,7 +16,14 @@ import ms from 'ms';
 export const registerUser: RequestHandler = async (req, res): Promise<void> => {
   const user = await checkUserVerification(req.body);
   if (user) {
-    ApiResponse.sendJsonResponse(res, HttpStatusCode.OK, user.email, 'User not verified');
+    ApiResponse.sendJsonResponse(
+      res,
+      HttpStatusCode.OK,
+      user.email,
+      'User not verified',
+      StatusMessage.PENDING_VERIFICATION,
+    );
+    return;
   }
   const registeredUser = await registerUserService(req.body);
   ApiResponse.sendJsonResponse(
@@ -34,6 +41,16 @@ export const verifyEmail: RequestHandler = async (req, res): Promise<void> => {
 
 export const loginUser: RequestHandler = async (req, res): Promise<void> => {
   const data = await loginUserService(req.body);
+  if (!data.isVerified) {
+    ApiResponse.sendJsonResponse(
+      res,
+      HttpStatusCode.OK,
+      data.user.email,
+      'User not verified',
+      StatusMessage.PENDING_VERIFICATION,
+    );
+    return;
+  }
   res.cookie('accessToken', data.accessToken, {
     httpOnly: true,
     secure: true,

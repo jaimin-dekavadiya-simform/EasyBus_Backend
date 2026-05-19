@@ -32,3 +32,7 @@ export type AuthUser = {
   role: UserRole;
   orgId: string | null;
 };
+export enum StatusMessage {
+  SUCCESS = 'SUCCESS',
+  PENDING_VERIFICATION = 'PENDING_VERIFICATION',
+}
