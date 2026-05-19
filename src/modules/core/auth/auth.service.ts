@@ -42,7 +42,7 @@ export const resendEmailService = async (data: ResendUserEmailInput): Promise<vo
 
 export const checkUserVerification = async (data: RegisterUserInput): Promise<User | null> => {
   const user = await findUserByEmail(data.email);
-  if (user && user.isVerified) {
+  if (user?.isVerified) {
     throw new ApiError(HttpStatusCode.CONFLICT, 'Email already registered');
   } else if (user) {
     sendVerificationMail(user);
