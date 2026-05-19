@@ -9,7 +9,7 @@ import {
 } from './auth.service';
 import { RequestHandler } from 'express';
 import { HttpStatusCode } from '@/types/utils.types';
-import { VerifyEmailInput } from './auth.schema';
+import { VerifyEmailInput } from './auth.validation';
 import { config } from '@/config/env';
 import ms from 'ms';
 

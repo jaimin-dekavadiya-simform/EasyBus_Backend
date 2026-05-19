@@ -13,7 +13,7 @@ import {
   registerUserSchema,
   resendEmailSchema,
   verifyEmailSchema,
-} from './auth.schema';
+} from './auth.validation';
 import { asyncHandler } from '@/utils/asyncHandler';
 import { ValidationTarget } from '@/types/utils.types';
 import { authenticateUser } from '@/middleware/auth.middleware';

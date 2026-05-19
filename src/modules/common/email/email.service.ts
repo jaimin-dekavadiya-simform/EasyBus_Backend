@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 import { SendEmailOptions } from '@/types/mailer.types';
 import { compileVerificationMailTemplate } from './email.templates';
 import { config } from '@/config/env';
-import { generateJwtToken } from '../auth.utils';
+import { generateJwtToken } from '../../../utils/auth.utils';
 import { User } from '@/generated/prisma/client';
 import { HttpStatusCode } from '@/types/utils.types';
 const transporter = nodemailer.createTransport({

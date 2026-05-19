@@ -1,7 +1,7 @@
-import { RegisterUserInput, LoginUserInput, ResendUserEmailImput } from './auth.schema';
+import { RegisterUserInput, LoginUserInput, ResendUserEmailImput } from './auth.validation';
 import { comparePasswordHash, hashPassword, hashToken } from '@/utils/crypto.utils';
 import ApiError from '@/utils/apiError';
-import { sendVerificationMail } from '@/utils/email/email.service';
+import { sendVerificationMail } from '@/modules/common/email/email.service';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
 import { User } from '@/generated/prisma/client';
 import { HttpStatusCode } from '@/types/utils.types';
