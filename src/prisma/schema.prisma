@@ -14,14 +14,14 @@ datasource db {
 
 model User {
   id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  firstName   String  @map("first_name")
-  lastName    String  @map("last_name")
+  firstName    String   @map("first_name")
+  lastName     String   @map("last_name")
   email        String   @unique
   passwordHash String   @map("password_hash")
   role         UserRole
 
   orgId            String?       @map("org_id") @db.Uuid
-  organisation     Organisation? @relation(fields: [orgId], references: [id])
+  organisation     Organization? @relation(fields: [orgId], references: [id])
   employeeCode     String?       @map("employee_code")
   isVerified       Boolean       @default(false) @map("is_verified")
   refreshTokenHash String?       @map("refresh_token_hash")
@@ -42,7 +42,7 @@ enum UserRole {
   PASSENGER
 }
 
-model Organisation {
+model Organization {
   id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   tenantId     String   @unique @map("tenant_id")
   name         String
@@ -50,4 +50,12 @@ model Organisation {
   createdAt    DateTime @default(now()) @map("created_at")
 
   users User[]
+}
+
+model SeatLayout {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  layoutName String   @unique @map("layout_name")
+  config     Json
+  createdAt  DateTime @default(now()) @map("created_at")
+  @@index([id])
 }
