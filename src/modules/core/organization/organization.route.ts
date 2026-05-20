@@ -2,19 +2,19 @@ import { authenticateUser, authorizeUser } from '@/middleware/auth.middleware';
 import { validate } from '@/middleware/validate.middleware';
 import { UserRoles } from '@/types/user.types';
 import { Router } from 'express';
-import { createUserSchema } from './user.validation';
+import { createOrganizationSchema } from './organization.validation';
 import { ValidationTarget } from '@/types/utils.types';
 import { asyncHandler } from '@/utils/asyncHandler';
-import { createUserController } from './user.controller';
+import { createOrganizationController } from './organization.controller';
 
 const router = Router();
 
 router.post(
-  '/createUser',
+  '/create-organization',
   authenticateUser,
   authorizeUser(UserRoles.SUPER_ADMIN),
-  validate(createUserSchema, ValidationTarget.BODY),
-  asyncHandler(createUserController),
+  validate(createOrganizationSchema, ValidationTarget.BODY),
+  asyncHandler(createOrganizationController),
 );
 
 export default router;

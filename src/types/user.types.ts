@@ -5,3 +5,4 @@ export enum UserRoles {
   CONDUCTOR = 'CONDUCTOR',
   PASSENGER = 'PASSENGER',
 }
+export type prismaConflictError = { cause: { constraint: { fields: string[] } } };
