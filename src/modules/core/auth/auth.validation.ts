@@ -18,6 +18,11 @@ export const verifyEmailSchema = z.object({
   token: z.string(),
 });
 
+export const resendEmailSchema = z.object({
+  email: z.email(),
+});
+
 export type VerifyEmailInput = z.infer<typeof verifyEmailSchema>;
 export type RegisterUserInput = z.infer<typeof registerUserSchema>;
 export type LoginUserInput = z.infer<typeof loginUserSchema>;
+export type ResendUserEmailInput = z.infer<typeof resendEmailSchema>;

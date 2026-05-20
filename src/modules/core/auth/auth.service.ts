@@ -1,7 +1,7 @@
-import { RegisterUserInput, LoginUserInput } from './auth.schema';
+import { RegisterUserInput, LoginUserInput, ResendUserEmailInput } from './auth.validation';
 import { comparePasswordHash, hashPassword, hashToken } from '@/utils/crypto.utils';
 import ApiError from '@/utils/apiError';
-import { sendVerificationMail } from '@/utils/email/email.service';
+import { sendVerificationMail } from '@/modules/common/email/email.service';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
 import { User } from '@/generated/prisma/client';
 import { HttpStatusCode } from '@/types/utils.types';
@@ -31,6 +31,26 @@ export const registerUserService = async (data: RegisterUserInput): Promise<User
   return user;
 };
 
+export const resendEmailService = async (data: ResendUserEmailInput): Promise<void> => {
+  const user = await findUserByEmail(data.email);
+  if (user) {
+    await sendVerificationMail(user);
+  } else {
+    throw new ApiError(HttpStatusCode.BAD_REQUEST, 'User does not Exists');
+  }
+};
+
+export const checkUserVerification = async (data: RegisterUserInput): Promise<User | null> => {
+  const user = await findUserByEmail(data.email);
+  if (user?.isVerified) {
+    throw new ApiError(HttpStatusCode.CONFLICT, 'Email already registered');
+  } else if (user) {
+    sendVerificationMail(user);
+    return user;
+  }
+  return null;
+};
+
 export const verifyEmailService = async (data: { token: string }): Promise<void> => {
   const token = data.token;
   const payload = verifyToken<{ userId: string }>(token, config.jwt.verification.secret);
@@ -39,13 +59,14 @@ export const verifyEmailService = async (data: { token: string }): Promise<void>
 
 export const loginUserService = async (
   data: LoginUserInput,
-): Promise<{ accessToken: string; refreshToken: string; user: User }> => {
+): Promise<{ accessToken: string; refreshToken: string; user: User; isVerified: boolean }> => {
   const user = await findUserByEmail(data.email);
   if (!user) {
     throw new ApiError(HttpStatusCode.BAD_REQUEST, 'Invalid Credentials');
   }
   if (!user.isVerified) {
-    throw new ApiError(HttpStatusCode.UNAUTHORIZED, 'User not verified');
+    sendVerificationMail(user);
+    return { accessToken: '', refreshToken: '', user, isVerified: false };
   }
   const isCorrect = await comparePasswordHash(data.password, user.passwordHash);
   if (!isCorrect) {
@@ -60,7 +81,7 @@ export const loginUserService = async (
   );
   const hashedRefreshToken = hashToken(refreshToken);
   await updateUserById(user.id, { refreshTokenHash: hashedRefreshToken });
-  return { accessToken, refreshToken, user };
+  return { accessToken, refreshToken, user, isVerified: true };
 };
 
 export const getUserService = async (data: { userId: string }): Promise<User> => {

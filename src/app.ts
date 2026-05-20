@@ -1,6 +1,6 @@
 import express from 'express';
 import { globalErrorHandler } from './middleware/errorHandler.middleware';
-import AuthRouter from './features/auth/auth.route';
+import AuthRouter from './modules/core/auth/auth.route';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { config } from './config/env';

@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 import { SendEmailOptions } from '@/types/mailer.types';
 import { compileVerificationMailTemplate } from './email.templates';
 import { config } from '@/config/env';
-import { generateJwtToken } from '../auth.utils';
+import { generateJwtToken } from '../../../utils/auth.utils';
 import { User } from '@/generated/prisma/client';
 import { HttpStatusCode } from '@/types/utils.types';
 const transporter = nodemailer.createTransport({
@@ -24,7 +24,7 @@ const sendEmail = async (options: SendEmailOptions): Promise<void> => {
   });
 };
 
-export const sendVerificationMail = (user: User): void => {
+export const sendVerificationMail = async (user: User): Promise<void> => {
   const emailVerificationToken = generateJwtToken(
     { userId: user.id },
     config.jwt.verification.secret,
@@ -39,7 +39,7 @@ export const sendVerificationMail = (user: User): void => {
   }
   const url = `${baseUrl}/api/auth/verifyEmail?token=${emailVerificationToken}`;
   const html = compileVerificationMailTemplate({ url, name: user.firstName });
-  sendEmail({ to: user.email, subject: 'Email Verification', html: html }).catch((err) => {
+  await sendEmail({ to: user.email, subject: 'Email Verification', html: html }).catch((err) => {
     console.log('Email Servie Failed ', err);
   });
 };
