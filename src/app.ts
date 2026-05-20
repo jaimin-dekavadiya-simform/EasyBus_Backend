@@ -1,6 +1,7 @@
 import express from 'express';
 import { globalErrorHandler } from './middleware/errorHandler.middleware';
 import AuthRouter from './modules/core/auth/auth.route';
+import SeatLayoutRouter from './modules/core/seatLayout/seat-layout.route';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { config } from './config/env';
@@ -15,6 +16,7 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 app.use('/api/auth', AuthRouter);
+app.use('/api/seat-layout', SeatLayoutRouter);
 app.use(globalErrorHandler);
 
 export default app;

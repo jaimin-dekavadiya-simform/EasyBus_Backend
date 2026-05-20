@@ -5,7 +5,7 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -50,6 +50,7 @@ model Organization {
   createdAt    DateTime @default(now()) @map("created_at")
 
   users User[]
+  @@map("organizations")
 }
 
 model SeatLayout {
@@ -58,4 +59,5 @@ model SeatLayout {
   config     Json
   createdAt  DateTime @default(now()) @map("created_at")
   @@index([id])
+  @@map("seat_layout")
 }
