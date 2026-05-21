@@ -21,7 +21,7 @@ export default [
     },
     rules: {
       'prettier/prettier': 'error',
-      'no-console': 'warn',
+      'no-console': 'error',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {

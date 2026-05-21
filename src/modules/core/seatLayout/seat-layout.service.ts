@@ -11,11 +11,8 @@ export const createSeatLayoutService = async (data: SeatLayoutInput): Promise<Se
   try {
     seatLayout = await createSeatLayout(injectedLayout);
   } catch (error) {
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      // P2002 is Prisma's code for "Unique constraint failed"
-      if (error.code === 'P2002') {
-        throw new ApiError(HttpStatusCode.BAD_REQUEST, 'A layout with this name already exists');
-      }
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+      throw new ApiError(HttpStatusCode.BAD_REQUEST, 'A layout with this name already exists');
     }
     throw error;
   }
