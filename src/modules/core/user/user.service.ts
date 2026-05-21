@@ -5,11 +5,17 @@ import { hashPassword } from '@/utils/crypto.utils';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
 import { HttpStatusCode } from '@/types/utils.types';
 import ApiError from '@/utils/apiError';
-import { prismaConflictError } from '@/types/user.types';
+import { prismaConflictError, RoleWeights, UserRoles } from '@/types/user.types';
 
-export const createUserService = async (data: CreateUserInput): Promise<User> => {
+export const createUserService = async (
+  data: CreateUserInput,
+  userRole: UserRoles,
+): Promise<User> => {
   const { password, ...userData } = data;
   const passwordHash = await hashPassword(password);
+  if (RoleWeights[data.role] >= RoleWeights[userRole] || data.role === UserRoles.PASSENGER) {
+    throw new ApiError(HttpStatusCode.UNAUTHORIZED, 'Unauthorized Creation');
+  }
   try {
     const user = await createUser({ ...userData, passwordHash, isVerified: true });
     return user;

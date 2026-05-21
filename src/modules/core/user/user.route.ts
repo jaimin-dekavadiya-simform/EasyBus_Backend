@@ -12,7 +12,7 @@ const router = Router();
 router.post(
   '/createUser',
   authenticateUser,
-  authorizeUser(UserRoles.SUPER_ADMIN),
+  authorizeUser([UserRoles.SUPER_ADMIN, UserRoles.ORG_ADMIN, UserRoles.OPERATOR]),
   validate(createUserSchema, ValidationTarget.BODY),
   asyncHandler(createUserController),
 );
