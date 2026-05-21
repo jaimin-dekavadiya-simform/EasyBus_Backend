@@ -20,12 +20,21 @@ export const createUserService = async (
     const user = await createUser({ ...userData, passwordHash, isVerified: true });
     return user;
   } catch (error) {
-    if (error instanceof PrismaClientKnownRequestError) {
-      if (error.code === 'P2002') {
-        const targetFields =
-          (error.meta?.target as string[]) ||
-          (error.meta?.driverAdapterError as prismaConflictError)?.cause?.constraint?.fields ||
-          [];
+    if (!(error instanceof PrismaClientKnownRequestError)) {
+      throw error;
+    }
+
+    const getTargetFields = (): string[] => {
+      return (
+        (error.meta?.target as string[]) ||
+        (error.meta?.driverAdapterError as prismaConflictError)?.cause?.constraint?.fields ||
+        []
+      );
+    };
+
+    switch (error.code) {
+      case 'P2002': {
+        const targetFields = getTargetFields();
 
         if (targetFields.includes('email')) {
           throw new ApiError(HttpStatusCode.CONFLICT, 'Email already registered');
@@ -37,10 +46,14 @@ export const createUserService = async (
             'This employee code is already registered for this organization',
           );
         }
-      } else if (error.code === 'P2003') {
-        throw new ApiError(HttpStatusCode.BAD_REQUEST, 'Organization does not exist');
+
+        break;
       }
+
+      case 'P2003':
+        throw new ApiError(HttpStatusCode.BAD_REQUEST, 'Organization does not exist');
     }
+
     throw error;
   }
 };
