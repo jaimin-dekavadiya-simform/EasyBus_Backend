@@ -53,13 +53,11 @@ export const loginUser: RequestHandler = async (req, res): Promise<void> => {
   }
   res.cookie('accessToken', data.accessToken, {
     httpOnly: true,
-    secure: true,
     sameSite: 'strict',
     maxAge: ms(config.jwt.access.expiry),
   });
   res.cookie('refreshToken', data.refreshToken, {
     httpOnly: true,
-    secure: true,
     sameSite: 'strict',
     maxAge: ms(config.jwt.refresh.expiry),
   });
