@@ -1,3 +1,4 @@
+import { logger } from './../utils/logger';
 import { z } from 'zod';
 import ms, { StringValue } from 'ms';
 const envSchema = z.object({
@@ -105,7 +106,7 @@ const envSchema = z.object({
 const parsedEnv = envSchema.safeParse(process.env);
 
 if (!parsedEnv.success) {
-  console.error('❌ Invalid environment variables:\n', parsedEnv.error.format());
+  logger.error({ errors: parsedEnv.error.flatten().fieldErrors }, 'Invalid environment variables');
   process.exit(1);
 }
 
