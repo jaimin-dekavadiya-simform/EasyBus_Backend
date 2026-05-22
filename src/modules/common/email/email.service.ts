@@ -6,6 +6,7 @@ import { config } from '@/config/env';
 import { generateJwtToken } from '../../../utils/auth.utils';
 import { User } from '@/generated/prisma/client';
 import { HttpStatusCode } from '@/types/utils.types';
+import { logger } from '@/utils/logger';
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -40,6 +41,6 @@ export const sendVerificationMail = async (user: User): Promise<void> => {
   const url = `${baseUrl}/api/auth/verifyEmail?token=${emailVerificationToken}`;
   const html = compileVerificationMailTemplate({ url, name: user.firstName });
   await sendEmail({ to: user.email, subject: 'Email Verification', html: html }).catch((err) => {
-    console.log('Email Servie Failed ', err);
+    logger.error(err, 'Email Service Failed');
   });
 };
