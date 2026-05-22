@@ -29,7 +29,7 @@ export interface UserJwtPayload {
 export type AuthUser = {
   userId: string;
   role: UserRoles;
-  orgId: string | null;
+  orgId: string | undefined;
 };
 export enum StatusMessage {
   SUCCESS = 'SUCCESS',
