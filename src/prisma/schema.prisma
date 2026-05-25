@@ -51,6 +51,7 @@ model Organization {
 
   users  User[]
   routes Route[]
+  buses  Bus[]
 
   @@map("organizations")
 }
@@ -60,6 +61,8 @@ model SeatLayout {
   layoutName String   @unique @map("layout_name")
   config     Json
   createdAt  DateTime @default(now()) @map("created_at")
+
+  buses Bus[]
 
   @@index([id])
   @@map("seat_layouts")
@@ -102,4 +105,25 @@ model RouteStops {
   @@index([routeId, sequenceOrder])
   @@index([stopId])
   @@map("route_stops")
+}
+
+model Bus {
+  id                 String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  orgId              String       @map("org_id") @db.Uuid
+  organization       Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  layoutId           String       @map("layout_id") @db.Uuid
+  layout             SeatLayout   @relation(fields: [layoutId], references: [id], onDelete: Cascade)
+  registrationNumber String       @map("registration_number")
+  busClass           BusClasses   @map("bus_class")
+
+  @@map("buses")
+}
+
+enum BusClasses {
+  SEATER
+  SEMI_SLEEPER
+  SLEEPER
+  AC_SEATER
+  AC_SEMI_SLEEPER
+  AC_SLEEPER
 }
