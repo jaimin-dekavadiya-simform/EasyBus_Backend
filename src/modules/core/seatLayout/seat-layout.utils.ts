@@ -1,7 +1,6 @@
 import { SeatLayoutInjectedInput, SeatLayoutInput } from './seat-layout.validation';
 
 export const injectTotalSeats = (layout: SeatLayoutInput): SeatLayoutInjectedInput => {
-  console.log(layout.config);
   const lowerDeck = layout.config.decks.lower;
   const upperDeck = layout.config.decks.upper;
   const allEntities = [...lowerDeck, ...(upperDeck || [])];

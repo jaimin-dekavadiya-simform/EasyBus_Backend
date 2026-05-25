@@ -3,14 +3,14 @@ import { config } from '@/config/env';
 import ApiError from '@/utils/apiError';
 import { verifyToken } from '@/utils/auth.utils';
 import { RequestHandler } from 'express';
-import { UserRole } from '@/generated/prisma/enums';
+import { UserRoles } from '@/types/user.types';
 
 export const authenticateUser: RequestHandler = (req, _res, next) => {
   const accessToken: string = req.cookies?.accessToken;
   if (!accessToken) {
     throw new ApiError(HttpStatusCode.UNAUTHORIZED, 'Unauthorized Access');
   }
-  const payload = verifyToken<{ userId: string; role: UserRole; orgId: string | null }>(
+  const payload = verifyToken<{ userId: string; role: UserRoles; orgId: string | null }>(
     accessToken,
     config.jwt.access.secret,
   );
@@ -19,7 +19,7 @@ export const authenticateUser: RequestHandler = (req, _res, next) => {
 };
 
 export const authorizeUser =
-  (roles: UserRole | UserRole[]): RequestHandler =>
+  (roles: UserRoles | UserRoles[]): RequestHandler =>
   (req, _res, next) => {
     const allowedRoles = Array.isArray(roles) ? roles : [roles];
     if (!req.user) {
