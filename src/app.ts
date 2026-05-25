@@ -8,6 +8,7 @@ import { config } from './config/env';
 import UserRouter from './modules/core/user/user.route';
 import SeatLayoutRouter from './modules/core/seatLayout/seat-layout.route';
 import RouteRouter from './modules/core/route/route.router';
+import BusRouter from './modules/core/bus/bus.route';
 import cookieParser from 'cookie-parser';
 import { pinoHttp } from 'pino-http';
 const app = express();
@@ -44,6 +45,7 @@ app.use('/api/user', UserRouter);
 app.use('/api/organization', OrganizationRouter);
 app.use('/api/seat-layout', SeatLayoutRouter);
 app.use('/api/route', RouteRouter);
+app.use('/api/bus', BusRouter);
 app.use(globalErrorHandler);
 
 export default app;

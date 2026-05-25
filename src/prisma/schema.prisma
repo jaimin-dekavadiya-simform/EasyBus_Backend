@@ -113,7 +113,7 @@ model Bus {
   organization       Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
   layoutId           String       @map("layout_id") @db.Uuid
   layout             SeatLayout   @relation(fields: [layoutId], references: [id], onDelete: Cascade)
-  registrationNumber String       @map("registration_number")
+  registrationNumber String       @map("registration_number") @unique
   busClass           BusClasses   @map("bus_class")
 
   @@map("buses")

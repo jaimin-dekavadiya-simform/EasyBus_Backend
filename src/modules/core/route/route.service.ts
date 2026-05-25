@@ -4,7 +4,7 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
 import { AuthUser, HttpStatusCode } from '@/types/utils.types';
 import ApiError from '@/utils/apiError';
 import { createRoute, createStop } from './route.repository';
-import { UserRoles } from '@/types/user.types';
+import { resolveOrgId } from '@/utils/auth.utils';
 
 export const createStopService = async (data: CreateStopInput): Promise<Stop> => {
   try {
@@ -22,16 +22,7 @@ export const createRouteService = async (
   data: CreateRouteInput,
   user: AuthUser,
 ): Promise<Route> => {
-  let orgId: string;
-  if (user.role === UserRoles.SUPER_ADMIN) {
-    if (!data.orgId) {
-      throw new ApiError(HttpStatusCode.BAD_REQUEST, 'Organization Id is required');
-    }
-    orgId = data.orgId;
-  } else {
-    orgId = user.orgId!;
-  }
-
+  const orgId = resolveOrgId(data, user);
   try {
     const route = await createRoute({
       label: data.label,
