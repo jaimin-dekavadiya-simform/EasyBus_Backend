@@ -62,7 +62,7 @@ model SeatLayout {
   createdAt  DateTime @default(now()) @map("created_at")
 
   @@index([id])
-  @@map("seat_layout")
+  @@map("seat_layouts")
 }
 
 model Stop {
@@ -86,6 +86,7 @@ model Route {
   routeStops RouteStops[]
 
   @@unique([label, orgId])
+  @@map("routes")
 }
 
 model RouteStops {
@@ -100,4 +101,5 @@ model RouteStops {
 
   @@index([routeId, sequenceOrder])
   @@index([stopId])
+  @@map("route_stops")
 }
