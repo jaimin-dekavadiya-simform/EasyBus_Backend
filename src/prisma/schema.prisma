@@ -21,7 +21,7 @@ model User {
   role         UserRole
 
   orgId            String?       @map("org_id") @db.Uuid
-  organisation     Organization? @relation(fields: [orgId], references: [id])
+  organization     Organization? @relation(fields: [orgId], references: [id], onDelete: Cascade)
   employeeCode     String?       @map("employee_code")
   isVerified       Boolean       @default(false) @map("is_verified")
   refreshTokenHash String?       @map("refresh_token_hash")
@@ -49,7 +49,9 @@ model Organization {
   contactEmail String   @map("contact_email")
   createdAt    DateTime @default(now()) @map("created_at")
 
-  users User[]
+  users  User[]
+  routes Route[]
+
   @@map("organizations")
 }
 
@@ -58,6 +60,46 @@ model SeatLayout {
   layoutName String   @unique @map("layout_name")
   config     Json
   createdAt  DateTime @default(now()) @map("created_at")
+
   @@index([id])
-  @@map("seat_layout")
+  @@map("seat_layouts")
+}
+
+model Stop {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String   @unique
+  longitude Decimal? @db.Decimal(9, 6)
+  latitude  Decimal? @db.Decimal(9, 6)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  routeStops RouteStops[]
+
+  @@map("stops")
+}
+
+model Route {
+  id           String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  label        String
+  orgId        String       @map("org_id") @db.Uuid
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  routeStops RouteStops[]
+
+  @@unique([label, orgId])
+  @@map("routes")
+}
+
+model RouteStops {
+  id                         String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  stopId                     String @map("stop_id") @db.Uuid
+  stop                       Stop   @relation(fields: [stopId], references: [id], onDelete: Cascade)
+  routeId                    String @map("route_id") @db.Uuid
+  route                      Route  @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  sequenceOrder              Int    @map("sequence_order")
+  distanceFromPrevStop_Km    Float  @map("distance_from_prev_stop_km")
+  travelTimeFromPrevStop_Min Int    @map("travel_time_from_prev_stop_min")
+
+  @@index([routeId, sequenceOrder])
+  @@index([stopId])
+  @@map("route_stops")
 }

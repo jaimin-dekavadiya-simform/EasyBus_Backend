@@ -10,7 +10,7 @@ export const authenticateUser: RequestHandler = (req, _res, next) => {
   if (!accessToken) {
     throw new ApiError(HttpStatusCode.UNAUTHORIZED, 'Unauthorized Access');
   }
-  const payload = verifyToken<{ userId: string; role: UserRoles; orgId: string | null }>(
+  const payload = verifyToken<{ userId: string; role: UserRoles; orgId: string | undefined }>(
     accessToken,
     config.jwt.access.secret,
   );

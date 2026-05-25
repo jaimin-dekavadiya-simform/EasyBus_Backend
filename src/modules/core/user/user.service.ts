@@ -51,7 +51,7 @@ export const createUserService = async (
       }
 
       case 'P2003':
-        throw new ApiError(HttpStatusCode.BAD_REQUEST, 'Organization does not exist');
+        throw new ApiError(HttpStatusCode.NOT_FOUND, 'Organization does not exist');
     }
 
     throw error;
