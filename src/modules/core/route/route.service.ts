@@ -56,7 +56,7 @@ export const createRouteService = async (
       }
       if (error.code === 'P2003') {
         throw new ApiError(
-          HttpStatusCode.BAD_REQUEST,
+          HttpStatusCode.NOT_FOUND,
           'Invalid reference. Either the organization or one of the stops provided does not exist in the database.',
         );
       }
