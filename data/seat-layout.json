@@ -1,0 +1,226 @@
+{
+  "layoutName": "Traveller",
+  "config": {
+    "dimensions": {
+      "columns": 5,
+      "rows": 6,
+      "noOfDecks": 2
+    },
+    "decks": {
+      "lower": [
+        {
+          "id": "driver-1",
+          "label": "Driver",
+          "type": "driver",
+          "row": 0,
+          "col": 4,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "cond-1",
+          "label": "Conductor",
+          "type": "conductor",
+          "row": 0,
+          "col": 0,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "door-1",
+          "label": "Entry",
+          "type": "door",
+          "row": 0,
+          "col": 1,
+          "rowSpan": 1,
+          "colSpan": 2
+        },
+
+        {
+          "id": "1A",
+          "label": "1A",
+          "type": "seat",
+          "row": 1,
+          "col": 0,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "1B",
+          "label": "1B",
+          "type": "seat",
+          "row": 1,
+          "col": 1,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "1C",
+          "label": "1C",
+          "type": "seat",
+          "row": 1,
+          "col": 3,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "1D",
+          "label": "1D",
+          "type": "seat",
+          "row": 1,
+          "col": 4,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+
+        {
+          "id": "2A",
+          "label": "2A",
+          "type": "seat",
+          "row": 2,
+          "col": 0,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "2B",
+          "label": "2B",
+          "type": "seat",
+          "row": 2,
+          "col": 1,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "2C",
+          "label": "2C",
+          "type": "seat",
+          "row": 2,
+          "col": 3,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "2D",
+          "label": "2D",
+          "type": "seat",
+          "row": 2,
+          "col": 4,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+
+        {
+          "id": "3A",
+          "label": "3A",
+          "type": "seat",
+          "row": 3,
+          "col": 0,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "3B",
+          "label": "3B",
+          "type": "seat",
+          "row": 3,
+          "col": 1,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "3C",
+          "label": "3C",
+          "type": "seat",
+          "row": 3,
+          "col": 3,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "3D",
+          "label": "3D",
+          "type": "seat",
+          "row": 3,
+          "col": 4,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+
+        {
+          "id": "4A",
+          "label": "4A",
+          "type": "seat",
+          "row": 4,
+          "col": 0,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "4B",
+          "label": "4B",
+          "type": "seat",
+          "row": 4,
+          "col": 1,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "4C",
+          "label": "4C",
+          "type": "seat",
+          "row": 4,
+          "col": 3,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "4D",
+          "label": "4D",
+          "type": "seat",
+          "row": 4,
+          "col": 4,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+
+        {
+          "id": "5A",
+          "label": "5A",
+          "type": "seat",
+          "row": 5,
+          "col": 0,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "5B",
+          "label": "5B",
+          "type": "seat",
+          "row": 5,
+          "col": 1,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "5C",
+          "label": "5C",
+          "type": "seat",
+          "row": 5,
+          "col": 3,
+          "rowSpan": 1,
+          "colSpan": 1
+        },
+        {
+          "id": "5D",
+          "label": "5D",
+          "type": "seat",
+          "row": 5,
+          "col": 4,
+          "rowSpan": 1,
+          "colSpan": 1
+        }
+      ]
+    }
+  }
+}
