@@ -1,0 +1,68 @@
+import { Trip } from '@/generated/prisma/client';
+import { findOrganizationById } from '../organization/organization.repository';
+import { resolveOrgId } from '@/utils/auth.utils';
+import { AuthUser, HttpStatusCode } from '@/types/utils.types';
+import ApiError from '@/utils/apiError';
+import { findRouteWithStopsById } from '../route/route.repository';
+import { CreateTripInput } from './trip.validation';
+import { findUserWithTripsById } from '../user/user.repository';
+import { UserRoles } from '@/types/user.types';
+import { calculateArrivalTime, isTimeOverlapping } from './trip.utils';
+import { findBusWithTripsById } from '../bus/bus.repository';
+import { createTrip } from './trip.repository';
+
+export const createTripService = async (data: CreateTripInput, user: AuthUser): Promise<Trip> => {
+  const orgId = resolveOrgId(data, user);
+  const result = await Promise.all([
+    findOrganizationById(orgId),
+    findRouteWithStopsById(data.routeId),
+    findUserWithTripsById(data.conductorId),
+  ]);
+  const organization = result[0];
+  if (!organization) {
+    throw new ApiError(HttpStatusCode.NOT_FOUND, 'Organization does not exist');
+  }
+  const route = result[1];
+  if (!route) {
+    throw new ApiError(HttpStatusCode.NOT_FOUND, 'Route does not exist');
+  }
+  const arrivalTime = calculateArrivalTime(data.departureTime, route.routeStops);
+  const bus = await findBusWithTripsById(data.busId);
+  if (!bus) {
+    throw new ApiError(HttpStatusCode.NOT_FOUND, 'Bus does not exist');
+  }
+  for (const trip of bus.trips) {
+    if (
+      isTimeOverlapping(
+        { start: data.departureTime, end: arrivalTime },
+        { start: trip.departureTime, end: trip.arrivalTime },
+      )
+    ) {
+      throw new ApiError(
+        HttpStatusCode.CONFLICT,
+        'Bus already assigned to another trip at the same time, Please choose different time frame',
+      );
+    }
+  }
+  const conductorUser = result[2];
+  if (!conductorUser || conductorUser.role !== UserRoles.CONDUCTOR) {
+    throw new ApiError(HttpStatusCode.NOT_FOUND, 'Conductor Not Found');
+  }
+
+  for (const trip of conductorUser.trips) {
+    if (
+      isTimeOverlapping(
+        { start: data.departureTime, end: arrivalTime },
+        { start: trip.departureTime, end: trip.arrivalTime },
+      )
+    ) {
+      throw new ApiError(
+        HttpStatusCode.CONFLICT,
+        'Conductor already assigned to another trip at the same time, Please choose different time frame',
+      );
+    }
+  }
+
+  const trip = await createTrip({ ...data, orgId, arrivalTime });
+  return trip;
+};

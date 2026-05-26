@@ -1,10 +1,16 @@
 import z from 'zod';
+import { BookableSeatTypes } from './seat-layout.types';
 
 const LayoutItemSchema = z.object({
   id: z.string().min(1, 'ID is required'),
   label: z.string().min(1, 'Label is required'),
 
-  type: z.enum(['seat', 'sleeper', 'driver', 'conductor', 'door']),
+  type: z.union([
+    z.enum(BookableSeatTypes),
+    z.literal('DRIVER'),
+    z.literal('CONDUCTOR'),
+    z.literal('DOOR'),
+  ]),
 
   row: z.number().int().nonnegative(),
   col: z.number().int().nonnegative(),

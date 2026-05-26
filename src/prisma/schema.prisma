@@ -28,6 +28,8 @@ model User {
   createdAt        DateTime      @default(now()) @map("created_at")
   updatedAt        DateTime      @updatedAt @map("updated_at")
 
+  trips Trip[]
+
   @@unique([orgId, employeeCode])
   @@index([orgId])
   @@index([role])
@@ -52,6 +54,7 @@ model Organization {
   users  User[]
   routes Route[]
   buses  Bus[]
+  trips  Trip[]
 
   @@map("organizations")
 }
@@ -87,6 +90,7 @@ model Route {
   organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
 
   routeStops RouteStops[]
+  trips      Trip[]
 
   @@unique([label, orgId])
   @@map("routes")
@@ -113,8 +117,10 @@ model Bus {
   organization       Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
   layoutId           String       @map("layout_id") @db.Uuid
   layout             SeatLayout   @relation(fields: [layoutId], references: [id], onDelete: Cascade)
-  registrationNumber String       @map("registration_number") @unique
+  registrationNumber String       @unique @map("registration_number")
   busClass           BusClasses   @map("bus_class")
+
+  trips Trip[]
 
   @@map("buses")
 }
@@ -126,4 +132,35 @@ enum BusClasses {
   AC_SEATER
   AC_SEMI_SLEEPER
   AC_SLEEPER
+}
+
+model Trip {
+  id              String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  orgId           String       @map("org_id") @db.Uuid
+  organization    Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  routeId         String       @map("route_id") @db.Uuid
+  route           Route        @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  conductorId     String       @map("conductor_id") @db.Uuid
+  conductor       User         @relation(fields: [conductorId], references: [id])
+  busId           String       @map("bus_id")
+  bus             Bus          @relation(fields: [busId], references: [id], onDelete: Cascade)
+  driverName      String       @map("driver_name")
+  driverLicense   String       @map("driver_license")
+  departureTime   DateTime     @map("departure_time")
+  arrivalTime     DateTime     @map("arrival_time")
+  baseFare        Float        @map("base_fare")
+  status          TripStatus
+  createdAt       DateTime     @default(now())
+  fareMultipliers Json         @map("fare_multipliers")
+
+  @@index([routeId])
+  @@map("trips")
+}
+
+enum TripStatus {
+  SCHEDULED
+  BOARDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
 }

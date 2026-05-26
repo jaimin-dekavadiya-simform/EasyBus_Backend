@@ -1,5 +1,5 @@
 import { prisma } from '@/config/prisma';
-import { User } from '@/generated/prisma/client';
+import { Trip, User } from '@/generated/prisma/client';
 import { UserCreateInput, UserUpdateInput } from '@/generated/prisma/models';
 
 export const createUser = async (user: UserCreateInput): Promise<User> => {
@@ -21,5 +21,12 @@ export const findUserByEmail = async (email: string): Promise<User | null> => {
 
 export const findUserById = async (userId: string): Promise<User | null> => {
   const user = await prisma.user.findUnique({ where: { id: userId } });
+  return user;
+};
+
+export const findUserWithTripsById = async (
+  userId: string,
+): Promise<(User & { trips: Trip[] }) | null> => {
+  const user = await prisma.user.findUnique({ where: { id: userId }, include: { trips: true } });
   return user;
 };
