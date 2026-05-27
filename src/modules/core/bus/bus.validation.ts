@@ -4,6 +4,7 @@ import z from 'zod';
 export const CreateBusSchema = z.object({
   orgId: z.uuid().optional(),
   layoutId: z.uuid(),
+  label: z.string(),
   registrationNumber: z
     .string()
     .regex(

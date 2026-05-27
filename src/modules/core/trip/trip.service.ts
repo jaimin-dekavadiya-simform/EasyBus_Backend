@@ -10,9 +10,11 @@ import { UserRoles } from '@/types/user.types';
 import { calculateArrivalTime, isTimeOverlapping } from './trip.utils';
 import { findBusWithTripsById } from '../bus/bus.repository';
 import { createTrip } from './trip.repository';
+import { logger } from '@/utils/logger';
 
 export const createTripService = async (data: CreateTripInput, user: AuthUser): Promise<Trip> => {
   const orgId = resolveOrgId(data, user);
+  data.departureTime = new Date(data.departureTime);
   const result = await Promise.all([
     findOrganizationById(orgId),
     findRouteWithStopsById(data.routeId),
@@ -32,6 +34,12 @@ export const createTripService = async (data: CreateTripInput, user: AuthUser): 
     throw new ApiError(HttpStatusCode.NOT_FOUND, 'Bus does not exist');
   }
   for (const trip of bus.trips) {
+    logger.info(
+      isTimeOverlapping(
+        { start: data.departureTime, end: arrivalTime },
+        { start: trip.departureTime, end: trip.arrivalTime },
+      ),
+    );
     if (
       isTimeOverlapping(
         { start: data.departureTime, end: arrivalTime },

@@ -113,6 +113,7 @@ model RouteStops {
 
 model Bus {
   id                 String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  label              String
   orgId              String       @map("org_id") @db.Uuid
   organization       Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
   layoutId           String       @map("layout_id") @db.Uuid
@@ -142,14 +143,14 @@ model Trip {
   route           Route        @relation(fields: [routeId], references: [id], onDelete: Cascade)
   conductorId     String       @map("conductor_id") @db.Uuid
   conductor       User         @relation(fields: [conductorId], references: [id])
-  busId           String       @map("bus_id")
+  busId           String       @map("bus_id") @db.Uuid
   bus             Bus          @relation(fields: [busId], references: [id], onDelete: Cascade)
   driverName      String       @map("driver_name")
   driverLicense   String       @map("driver_license")
   departureTime   DateTime     @map("departure_time")
   arrivalTime     DateTime     @map("arrival_time")
   baseFare        Float        @map("base_fare")
-  status          TripStatus
+  status          TripStatus   @default(SCHEDULED)
   createdAt       DateTime     @default(now())
   fareMultipliers Json         @map("fare_multipliers")
 

@@ -1,0 +1,20 @@
+import { authenticateUser, authorizeUser } from '@/middleware/auth.middleware';
+import { validate } from '@/middleware/validate.middleware';
+import { UserRoles } from '@/types/user.types';
+import { Router } from 'express';
+import { createTripSchema } from './trip.validation';
+import { ValidationTarget } from '@/types/utils.types';
+import { asyncHandler } from '@/utils/asyncHandler';
+import { createTripController } from './trip.controller';
+
+const router = Router();
+
+router.post(
+  '/',
+  authenticateUser,
+  authorizeUser([UserRoles.SUPER_ADMIN, UserRoles.ORG_ADMIN, UserRoles.OPERATOR]),
+  validate(createTripSchema, ValidationTarget.BODY),
+  asyncHandler(createTripController),
+);
+
+export default router;

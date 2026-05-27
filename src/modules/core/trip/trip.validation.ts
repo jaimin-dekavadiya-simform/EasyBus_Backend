@@ -1,15 +1,23 @@
 import z from 'zod';
 import { BookableSeatTypes } from '../seatLayout/seat-layout.types';
-import { TripStatus } from '@/generated/prisma/enums';
 
-export const fareMultiplierSchema = z.record(
-  z.enum(BookableSeatTypes),
-  z
-    .number({
-      error: 'Fare multiplier must be a number',
-    })
-    .positive('Fare multiplier must be greater than 0'),
+const optionalSeatTypes = Object.values(BookableSeatTypes).reduce(
+  (acc, seat) => {
+    acc[seat] = z
+      .number({ error: 'Fare multiplier must be a number' })
+      .positive('Fare multiplier must be greater than 0')
+      .optional();
+    return acc;
+  },
+  {} as Record<string, z.ZodOptional<z.ZodNumber>>,
 );
+
+export const fareMultiplierSchema = z.object({
+  DEFAULT: z
+    .number({ error: 'Default fare multiplier must be a number' })
+    .positive('Default fare multiplier must be greater than 0'),
+  ...optionalSeatTypes,
+});
 
 export const createTripSchema = z.object({
   orgId: z.uuid('Invalid organization ID').optional(),
@@ -50,13 +58,7 @@ export const createTripSchema = z.object({
     })
     .positive('Base fare must be greater than 0'),
 
-  status: z.enum(TripStatus, {
-    error: 'Invalid trip status',
-  }),
-
-  fareMultipliers: fareMultiplierSchema.refine((obj) => Object.keys(obj).length > 0, {
-    message: 'At least one fare multiplier is required',
-  }),
+  fareMultipliers: fareMultiplierSchema,
 });
 
 export type CreateTripInput = z.infer<typeof createTripSchema>;

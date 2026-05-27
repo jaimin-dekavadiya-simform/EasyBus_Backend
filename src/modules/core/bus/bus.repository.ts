@@ -10,6 +10,9 @@ export const createBus = async (data: BusUncheckedCreateInput): Promise<Bus> => 
 export const findBusWithTripsById = async (
   id: string,
 ): Promise<(Bus & { trips: Trip[] }) | null> => {
-  const bus = await prisma.bus.findUnique({ where: { id }, include: { trips: true } });
+  const bus = await prisma.bus.findUnique({
+    where: { id },
+    include: { trips: true },
+  });
   return bus;
 };
