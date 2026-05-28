@@ -5,7 +5,7 @@ export const injectTotalSeats = (layout: SeatLayoutInput): SeatLayoutInjectedInp
   const upperDeck = layout.config.decks.upper;
   const allEntities = [...lowerDeck, ...(upperDeck || [])];
   const filteredSeats = allEntities.filter(
-    (entity) => entity.type === 'seat' || entity.type === 'sleeper',
+    (entity) => entity.type === 'SEAT' || entity.type === 'SLEEPER',
   );
   const injectedLayout: SeatLayoutInjectedInput = {
     layoutName: layout.layoutName,
