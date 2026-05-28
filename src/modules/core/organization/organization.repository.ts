@@ -11,3 +11,10 @@ export const findOrganizationById = async (id: string): Promise<Organization | n
   const organization = await prisma.organization.findUnique({ where: { id } });
   return organization;
 };
+
+export const findOrganizationByTenantId = async (
+  tenantId: string,
+): Promise<Organization | null> => {
+  const organization = await prisma.organization.findUnique({ where: { tenantId } });
+  return organization;
+};
