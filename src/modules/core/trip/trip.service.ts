@@ -33,7 +33,7 @@ export const createTripService = async (data: CreateTripInput, user: AuthUser): 
   const arrivalTime = calculateArrivalTime(data.departureTime, route.routeStops);
 
   const conductorUser = result[2];
-  if (!conductorUser || conductorUser.role !== UserRoles.CONDUCTOR) {
+  if (conductorUser?.role !== UserRoles.CONDUCTOR) {
     throw new ApiError(HttpStatusCode.NOT_FOUND, 'Conductor Not Found');
   }
   checkTripsOverlap({ departureTime: data.departureTime, arrivalTime }, conductorUser.trips);
