@@ -1,226 +1,1662 @@
-{
-  "layoutName": "Traveller",
-  "config": {
-    "dimensions": {
-      "columns": 5,
-      "rows": 6,
-      "noOfDecks": 2
-    },
-    "decks": {
-      "lower": [
-        {
-          "id": "driver-1",
-          "label": "Driver",
-          "type": "driver",
-          "row": 0,
-          "col": 4,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "cond-1",
-          "label": "Conductor",
-          "type": "conductor",
-          "row": 0,
-          "col": 0,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "door-1",
-          "label": "Entry",
-          "type": "door",
-          "row": 0,
-          "col": 1,
-          "rowSpan": 1,
-          "colSpan": 2
-        },
-
-        {
-          "id": "1A",
-          "label": "1A",
-          "type": "seat",
-          "row": 1,
-          "col": 0,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "1B",
-          "label": "1B",
-          "type": "seat",
-          "row": 1,
-          "col": 1,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "1C",
-          "label": "1C",
-          "type": "seat",
-          "row": 1,
-          "col": 3,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "1D",
-          "label": "1D",
-          "type": "seat",
-          "row": 1,
-          "col": 4,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-
-        {
-          "id": "2A",
-          "label": "2A",
-          "type": "seat",
-          "row": 2,
-          "col": 0,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "2B",
-          "label": "2B",
-          "type": "seat",
-          "row": 2,
-          "col": 1,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "2C",
-          "label": "2C",
-          "type": "seat",
-          "row": 2,
-          "col": 3,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "2D",
-          "label": "2D",
-          "type": "seat",
-          "row": 2,
-          "col": 4,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-
-        {
-          "id": "3A",
-          "label": "3A",
-          "type": "seat",
-          "row": 3,
-          "col": 0,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "3B",
-          "label": "3B",
-          "type": "seat",
-          "row": 3,
-          "col": 1,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "3C",
-          "label": "3C",
-          "type": "seat",
-          "row": 3,
-          "col": 3,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "3D",
-          "label": "3D",
-          "type": "seat",
-          "row": 3,
-          "col": 4,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-
-        {
-          "id": "4A",
-          "label": "4A",
-          "type": "seat",
-          "row": 4,
-          "col": 0,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "4B",
-          "label": "4B",
-          "type": "seat",
-          "row": 4,
-          "col": 1,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "4C",
-          "label": "4C",
-          "type": "seat",
-          "row": 4,
-          "col": 3,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "4D",
-          "label": "4D",
-          "type": "seat",
-          "row": 4,
-          "col": 4,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-
-        {
-          "id": "5A",
-          "label": "5A",
-          "type": "seat",
-          "row": 5,
-          "col": 0,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "5B",
-          "label": "5B",
-          "type": "seat",
-          "row": 5,
-          "col": 1,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "5C",
-          "label": "5C",
-          "type": "seat",
-          "row": 5,
-          "col": 3,
-          "rowSpan": 1,
-          "colSpan": 1
-        },
-        {
-          "id": "5D",
-          "label": "5D",
-          "type": "seat",
-          "row": 5,
-          "col": 4,
-          "rowSpan": 1,
-          "colSpan": 1
-        }
-      ]
+[
+  {
+    "layoutName": "Standard 2x2 Seater",
+    "config": {
+      "dimensions": {
+        "columns": 5,
+        "rows": 11,
+        "noOfDecks": 1
+      },
+      "decks": {
+        "lower": [
+          {
+            "id": "driver-1",
+            "label": "Driver",
+            "type": "DRIVER",
+            "row": 0,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "door-1",
+            "label": "Entry",
+            "type": "DOOR",
+            "row": 0,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 2
+          },
+          {
+            "id": "cond-1",
+            "label": "Conductor",
+            "type": "CONDUCTOR",
+            "row": 0,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "1A",
+            "label": "1A",
+            "type": "SEAT",
+            "row": 1,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "1B",
+            "label": "1B",
+            "type": "SEAT",
+            "row": 1,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "1C",
+            "label": "1C",
+            "type": "SEAT",
+            "row": 1,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "1D",
+            "label": "1D",
+            "type": "SEAT",
+            "row": 1,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "2A",
+            "label": "2A",
+            "type": "SEAT",
+            "row": 2,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "2B",
+            "label": "2B",
+            "type": "SEAT",
+            "row": 2,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "2C",
+            "label": "2C",
+            "type": "SEAT",
+            "row": 2,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "2D",
+            "label": "2D",
+            "type": "SEAT",
+            "row": 2,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "3A",
+            "label": "3A",
+            "type": "SEAT",
+            "row": 3,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "3B",
+            "label": "3B",
+            "type": "SEAT",
+            "row": 3,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "3C",
+            "label": "3C",
+            "type": "SEAT",
+            "row": 3,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "3D",
+            "label": "3D",
+            "type": "SEAT",
+            "row": 3,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "4A",
+            "label": "4A",
+            "type": "SEAT",
+            "row": 4,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "4B",
+            "label": "4B",
+            "type": "SEAT",
+            "row": 4,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "4C",
+            "label": "4C",
+            "type": "SEAT",
+            "row": 4,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "4D",
+            "label": "4D",
+            "type": "SEAT",
+            "row": 4,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "5A",
+            "label": "5A",
+            "type": "SEAT",
+            "row": 5,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "5B",
+            "label": "5B",
+            "type": "SEAT",
+            "row": 5,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "5C",
+            "label": "5C",
+            "type": "SEAT",
+            "row": 5,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "5D",
+            "label": "5D",
+            "type": "SEAT",
+            "row": 5,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "6A",
+            "label": "6A",
+            "type": "SEAT",
+            "row": 6,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "6B",
+            "label": "6B",
+            "type": "SEAT",
+            "row": 6,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "6C",
+            "label": "6C",
+            "type": "SEAT",
+            "row": 6,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "6D",
+            "label": "6D",
+            "type": "SEAT",
+            "row": 6,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "7A",
+            "label": "7A",
+            "type": "SEAT",
+            "row": 7,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "7B",
+            "label": "7B",
+            "type": "SEAT",
+            "row": 7,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "7C",
+            "label": "7C",
+            "type": "SEAT",
+            "row": 7,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "7D",
+            "label": "7D",
+            "type": "SEAT",
+            "row": 7,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "8A",
+            "label": "8A",
+            "type": "SEAT",
+            "row": 8,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "8B",
+            "label": "8B",
+            "type": "SEAT",
+            "row": 8,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "8C",
+            "label": "8C",
+            "type": "SEAT",
+            "row": 8,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "8D",
+            "label": "8D",
+            "type": "SEAT",
+            "row": 8,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "9A",
+            "label": "9A",
+            "type": "SEAT",
+            "row": 9,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "9B",
+            "label": "9B",
+            "type": "SEAT",
+            "row": 9,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "9C",
+            "label": "9C",
+            "type": "SEAT",
+            "row": 9,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "9D",
+            "label": "9D",
+            "type": "SEAT",
+            "row": 9,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "10A",
+            "label": "10A",
+            "type": "SEAT",
+            "row": 10,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "10B",
+            "label": "10B",
+            "type": "SEAT",
+            "row": 10,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "10C",
+            "label": "10C",
+            "type": "SEAT",
+            "row": 10,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "10D",
+            "label": "10D",
+            "type": "SEAT",
+            "row": 10,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "layoutName": "Premium 2x1 Sleeper",
+    "config": {
+      "dimensions": {
+        "columns": 4,
+        "rows": 11,
+        "noOfDecks": 2
+      },
+      "decks": {
+        "lower": [
+          {
+            "id": "driver-1",
+            "label": "Driver",
+            "type": "DRIVER",
+            "row": 0,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "door-1",
+            "label": "Entry",
+            "type": "DOOR",
+            "row": 0,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 2
+          },
+          {
+            "id": "L1A",
+            "label": "L1A",
+            "type": "SLEEPER",
+            "row": 1,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L1B",
+            "label": "L1B",
+            "type": "SLEEPER",
+            "row": 1,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L1C",
+            "label": "L1C",
+            "type": "SLEEPER",
+            "row": 1,
+            "col": 3,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L2A",
+            "label": "L2A",
+            "type": "SLEEPER",
+            "row": 3,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L2B",
+            "label": "L2B",
+            "type": "SLEEPER",
+            "row": 3,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L2C",
+            "label": "L2C",
+            "type": "SLEEPER",
+            "row": 3,
+            "col": 3,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L3A",
+            "label": "L3A",
+            "type": "SLEEPER",
+            "row": 5,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L3B",
+            "label": "L3B",
+            "type": "SLEEPER",
+            "row": 5,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L3C",
+            "label": "L3C",
+            "type": "SLEEPER",
+            "row": 5,
+            "col": 3,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L4A",
+            "label": "L4A",
+            "type": "SLEEPER",
+            "row": 7,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L4B",
+            "label": "L4B",
+            "type": "SLEEPER",
+            "row": 7,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L4C",
+            "label": "L4C",
+            "type": "SLEEPER",
+            "row": 7,
+            "col": 3,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L5A",
+            "label": "L5A",
+            "type": "SLEEPER",
+            "row": 9,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L5B",
+            "label": "L5B",
+            "type": "SLEEPER",
+            "row": 9,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L5C",
+            "label": "L5C",
+            "type": "SLEEPER",
+            "row": 9,
+            "col": 3,
+            "rowSpan": 2,
+            "colSpan": 1
+          }
+        ],
+        "upper": [
+          {
+            "id": "U1A",
+            "label": "U1A",
+            "type": "SLEEPER",
+            "row": 1,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U1B",
+            "label": "U1B",
+            "type": "SLEEPER",
+            "row": 1,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U1C",
+            "label": "U1C",
+            "type": "SLEEPER",
+            "row": 1,
+            "col": 3,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U2A",
+            "label": "U2A",
+            "type": "SLEEPER",
+            "row": 3,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U2B",
+            "label": "U2B",
+            "type": "SLEEPER",
+            "row": 3,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U2C",
+            "label": "U2C",
+            "type": "SLEEPER",
+            "row": 3,
+            "col": 3,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U3A",
+            "label": "U3A",
+            "type": "SLEEPER",
+            "row": 5,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U3B",
+            "label": "U3B",
+            "type": "SLEEPER",
+            "row": 5,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U3C",
+            "label": "U3C",
+            "type": "SLEEPER",
+            "row": 5,
+            "col": 3,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U4A",
+            "label": "U4A",
+            "type": "SLEEPER",
+            "row": 7,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U4B",
+            "label": "U4B",
+            "type": "SLEEPER",
+            "row": 7,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U4C",
+            "label": "U4C",
+            "type": "SLEEPER",
+            "row": 7,
+            "col": 3,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U5A",
+            "label": "U5A",
+            "type": "SLEEPER",
+            "row": 9,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U5B",
+            "label": "U5B",
+            "type": "SLEEPER",
+            "row": 9,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U5C",
+            "label": "U5C",
+            "type": "SLEEPER",
+            "row": 9,
+            "col": 3,
+            "rowSpan": 2,
+            "colSpan": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "layoutName": "Executive 1x2 Seater",
+    "config": {
+      "dimensions": {
+        "columns": 4,
+        "rows": 9,
+        "noOfDecks": 1
+      },
+      "decks": {
+        "lower": [
+          {
+            "id": "driver-1",
+            "label": "Driver",
+            "type": "DRIVER",
+            "row": 0,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "door-1",
+            "label": "Entry",
+            "type": "DOOR",
+            "row": 0,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 2
+          },
+          {
+            "id": "1A",
+            "label": "1A",
+            "type": "SEAT",
+            "row": 1,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "1B",
+            "label": "1B",
+            "type": "SEAT",
+            "row": 1,
+            "col": 2,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "1C",
+            "label": "1C",
+            "type": "SEAT",
+            "row": 1,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "2A",
+            "label": "2A",
+            "type": "SEAT",
+            "row": 2,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "2B",
+            "label": "2B",
+            "type": "SEAT",
+            "row": 2,
+            "col": 2,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "2C",
+            "label": "2C",
+            "type": "SEAT",
+            "row": 2,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "3A",
+            "label": "3A",
+            "type": "SEAT",
+            "row": 3,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "3B",
+            "label": "3B",
+            "type": "SEAT",
+            "row": 3,
+            "col": 2,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "3C",
+            "label": "3C",
+            "type": "SEAT",
+            "row": 3,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "4A",
+            "label": "4A",
+            "type": "SEAT",
+            "row": 4,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "4B",
+            "label": "4B",
+            "type": "SEAT",
+            "row": 4,
+            "col": 2,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "4C",
+            "label": "4C",
+            "type": "SEAT",
+            "row": 4,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "5A",
+            "label": "5A",
+            "type": "SEAT",
+            "row": 5,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "5B",
+            "label": "5B",
+            "type": "SEAT",
+            "row": 5,
+            "col": 2,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "5C",
+            "label": "5C",
+            "type": "SEAT",
+            "row": 5,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "6A",
+            "label": "6A",
+            "type": "SEAT",
+            "row": 6,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "6B",
+            "label": "6B",
+            "type": "SEAT",
+            "row": 6,
+            "col": 2,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "6C",
+            "label": "6C",
+            "type": "SEAT",
+            "row": 6,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "7A",
+            "label": "7A",
+            "type": "SEAT",
+            "row": 7,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "7B",
+            "label": "7B",
+            "type": "SEAT",
+            "row": 7,
+            "col": 2,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "7C",
+            "label": "7C",
+            "type": "SEAT",
+            "row": 7,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "8A",
+            "label": "8A",
+            "type": "SEAT",
+            "row": 8,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "8B",
+            "label": "8B",
+            "type": "SEAT",
+            "row": 8,
+            "col": 2,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "8C",
+            "label": "8C",
+            "type": "SEAT",
+            "row": 8,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "layoutName": "Hybrid Seater & Sleeper",
+    "config": {
+      "dimensions": {
+        "columns": 5,
+        "rows": 11,
+        "noOfDecks": 2
+      },
+      "decks": {
+        "lower": [
+          {
+            "id": "driver-1",
+            "label": "Driver",
+            "type": "DRIVER",
+            "row": 0,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "door-1",
+            "label": "Entry",
+            "type": "DOOR",
+            "row": 0,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 2
+          },
+          {
+            "id": "cond-1",
+            "label": "Conductor",
+            "type": "CONDUCTOR",
+            "row": 0,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S1A",
+            "label": "1A",
+            "type": "SEAT",
+            "row": 1,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S1B",
+            "label": "1B",
+            "type": "SEAT",
+            "row": 1,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S1C",
+            "label": "1C",
+            "type": "SEAT",
+            "row": 1,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S1D",
+            "label": "1D",
+            "type": "SEAT",
+            "row": 1,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S2A",
+            "label": "2A",
+            "type": "SEAT",
+            "row": 2,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S2B",
+            "label": "2B",
+            "type": "SEAT",
+            "row": 2,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S2C",
+            "label": "2C",
+            "type": "SEAT",
+            "row": 2,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S2D",
+            "label": "2D",
+            "type": "SEAT",
+            "row": 2,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S3A",
+            "label": "3A",
+            "type": "SEAT",
+            "row": 3,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S3B",
+            "label": "3B",
+            "type": "SEAT",
+            "row": 3,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S3C",
+            "label": "3C",
+            "type": "SEAT",
+            "row": 3,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S3D",
+            "label": "3D",
+            "type": "SEAT",
+            "row": 3,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S4A",
+            "label": "4A",
+            "type": "SEAT",
+            "row": 4,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S4B",
+            "label": "4B",
+            "type": "SEAT",
+            "row": 4,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S4C",
+            "label": "4C",
+            "type": "SEAT",
+            "row": 4,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S4D",
+            "label": "4D",
+            "type": "SEAT",
+            "row": 4,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S5A",
+            "label": "5A",
+            "type": "SEAT",
+            "row": 5,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S5B",
+            "label": "5B",
+            "type": "SEAT",
+            "row": 5,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S5C",
+            "label": "5C",
+            "type": "SEAT",
+            "row": 5,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S5D",
+            "label": "5D",
+            "type": "SEAT",
+            "row": 5,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S6A",
+            "label": "6A",
+            "type": "SEAT",
+            "row": 6,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S6B",
+            "label": "6B",
+            "type": "SEAT",
+            "row": 6,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S6C",
+            "label": "6C",
+            "type": "SEAT",
+            "row": 6,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S6D",
+            "label": "6D",
+            "type": "SEAT",
+            "row": 6,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S7A",
+            "label": "7A",
+            "type": "SEAT",
+            "row": 7,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S7B",
+            "label": "7B",
+            "type": "SEAT",
+            "row": 7,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S7C",
+            "label": "7C",
+            "type": "SEAT",
+            "row": 7,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S7D",
+            "label": "7D",
+            "type": "SEAT",
+            "row": 7,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S8A",
+            "label": "8A",
+            "type": "SEAT",
+            "row": 8,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S8B",
+            "label": "8B",
+            "type": "SEAT",
+            "row": 8,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S8C",
+            "label": "8C",
+            "type": "SEAT",
+            "row": 8,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S8D",
+            "label": "8D",
+            "type": "SEAT",
+            "row": 8,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S9A",
+            "label": "9A",
+            "type": "SEAT",
+            "row": 9,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S9B",
+            "label": "9B",
+            "type": "SEAT",
+            "row": 9,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S9C",
+            "label": "9C",
+            "type": "SEAT",
+            "row": 9,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S9D",
+            "label": "9D",
+            "type": "SEAT",
+            "row": 9,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S10A",
+            "label": "10A",
+            "type": "SEAT",
+            "row": 10,
+            "col": 0,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S10B",
+            "label": "10B",
+            "type": "SEAT",
+            "row": 10,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S10C",
+            "label": "10C",
+            "type": "SEAT",
+            "row": 10,
+            "col": 3,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "S10D",
+            "label": "10D",
+            "type": "SEAT",
+            "row": 10,
+            "col": 4,
+            "rowSpan": 1,
+            "colSpan": 1
+          }
+        ],
+        "upper": [
+          {
+            "id": "U1A",
+            "label": "U1A",
+            "type": "SLEEPER",
+            "row": 1,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 2
+          },
+          {
+            "id": "U1B",
+            "label": "U1B",
+            "type": "SLEEPER",
+            "row": 1,
+            "col": 4,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U2A",
+            "label": "U2A",
+            "type": "SLEEPER",
+            "row": 3,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 2
+          },
+          {
+            "id": "U2B",
+            "label": "U2B",
+            "type": "SLEEPER",
+            "row": 3,
+            "col": 4,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U3A",
+            "label": "U3A",
+            "type": "SLEEPER",
+            "row": 5,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 2
+          },
+          {
+            "id": "U3B",
+            "label": "U3B",
+            "type": "SLEEPER",
+            "row": 5,
+            "col": 4,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U4A",
+            "label": "U4A",
+            "type": "SLEEPER",
+            "row": 7,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 2
+          },
+          {
+            "id": "U4B",
+            "label": "U4B",
+            "type": "SLEEPER",
+            "row": 7,
+            "col": 4,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U5A",
+            "label": "U5A",
+            "type": "SLEEPER",
+            "row": 9,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 2
+          },
+          {
+            "id": "U5B",
+            "label": "U5B",
+            "type": "SLEEPER",
+            "row": 9,
+            "col": 4,
+            "rowSpan": 2,
+            "colSpan": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "layoutName": "VIP 1x1 Sleeper",
+    "config": {
+      "dimensions": {
+        "columns": 3,
+        "rows": 11,
+        "noOfDecks": 2
+      },
+      "decks": {
+        "lower": [
+          {
+            "id": "driver-1",
+            "label": "Driver",
+            "type": "DRIVER",
+            "row": 0,
+            "col": 2,
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "id": "door-1",
+            "label": "Entry",
+            "type": "DOOR",
+            "row": 0,
+            "col": 1,
+            "rowSpan": 1,
+            "colSpan": 2
+          },
+          {
+            "id": "L1A",
+            "label": "L1A",
+            "type": "SLEEPER",
+            "row": 1,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L1B",
+            "label": "L1B",
+            "type": "SLEEPER",
+            "row": 1,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L2A",
+            "label": "L2A",
+            "type": "SLEEPER",
+            "row": 3,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L2B",
+            "label": "L2B",
+            "type": "SLEEPER",
+            "row": 3,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L3A",
+            "label": "L3A",
+            "type": "SLEEPER",
+            "row": 5,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L3B",
+            "label": "L3B",
+            "type": "SLEEPER",
+            "row": 5,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L4A",
+            "label": "L4A",
+            "type": "SLEEPER",
+            "row": 7,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L4B",
+            "label": "L4B",
+            "type": "SLEEPER",
+            "row": 7,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L5A",
+            "label": "L5A",
+            "type": "SLEEPER",
+            "row": 9,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "L5B",
+            "label": "L5B",
+            "type": "SLEEPER",
+            "row": 9,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          }
+        ],
+        "upper": [
+          {
+            "id": "U1A",
+            "label": "U1A",
+            "type": "SLEEPER",
+            "row": 1,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U1B",
+            "label": "U1B",
+            "type": "SLEEPER",
+            "row": 1,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U2A",
+            "label": "U2A",
+            "type": "SLEEPER",
+            "row": 3,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U2B",
+            "label": "U2B",
+            "type": "SLEEPER",
+            "row": 3,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U3A",
+            "label": "U3A",
+            "type": "SLEEPER",
+            "row": 5,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U3B",
+            "label": "U3B",
+            "type": "SLEEPER",
+            "row": 5,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U4A",
+            "label": "U4A",
+            "type": "SLEEPER",
+            "row": 7,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U4B",
+            "label": "U4B",
+            "type": "SLEEPER",
+            "row": 7,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U5A",
+            "label": "U5A",
+            "type": "SLEEPER",
+            "row": 9,
+            "col": 0,
+            "rowSpan": 2,
+            "colSpan": 1
+          },
+          {
+            "id": "U5B",
+            "label": "U5B",
+            "type": "SLEEPER",
+            "row": 9,
+            "col": 2,
+            "rowSpan": 2,
+            "colSpan": 1
+          }
+        ]
+      }
     }
   }
-}
+]

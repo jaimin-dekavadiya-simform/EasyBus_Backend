@@ -6,3 +6,8 @@ export const createOrganization = async (data: OrganizationCreateInput): Promise
   const organization = await prisma.organization.create({ data });
   return organization;
 };
+
+export const findOrganizationById = async (id: string): Promise<Organization | null> => {
+  const organization = await prisma.organization.findUnique({ where: { id } });
+  return organization;
+};

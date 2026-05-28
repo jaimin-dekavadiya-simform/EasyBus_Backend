@@ -1,0 +1,122 @@
+[
+  {
+    "notes": "Trip 1 - Palanpur to Surat (Morning)",
+    "busId": "d0df8974-0c6f-4672-8449-a2ff39771230",
+    "routeId": "9603ef50-4947-4115-b558-f9d9838c8dfe",
+    "conductorId": "3902e2ae-2fff-4c54-b070-8e20f04149b0",
+    "driverName": "Ramesh Patel",
+    "driverLicense": "GJ-DRV-1001",
+    "baseFare": 600,
+    "departureTime": "2026-06-01T08:00:00.000Z",
+    "fareMultipliers": {
+      "DEFAULT": 1.0,
+      "SEAT": 1.0,
+      "SLEEPER": 1.5
+    }
+  },
+  {
+    "notes": "Trip 2 - Palanpur to Surat (Afternoon) - Same route as Trip 1, different bus/staff",
+    "busId": "0fb5a7ba-d642-4e57-a81d-8a05d7d82656",
+    "routeId": "9603ef50-4947-4115-b558-f9d9838c8dfe",
+    "conductorId": "2fe13a50-b139-454d-897f-56699dfa0854",
+    "driverName": "Suresh Desai",
+    "driverLicense": "GJ-DRV-1002",
+    "baseFare": 600,
+    "departureTime": "2026-06-01T14:00:00.000Z",
+    "fareMultipliers": {
+      "DEFAULT": 1.0,
+      "SEAT": 1.1,
+      "SLEEPER": 1.6
+    }
+  },
+  {
+    "notes": "Trip 3 - Palanpur to Ahmedabad - Shares segment overlap with Trips 1 & 2",
+    "busId": "d0df8974-0c6f-4672-8449-a2ff39771230",
+    "routeId": "1110b89e-497e-4fb2-b25f-b15eee37eb96",
+    "conductorId": "3902e2ae-2fff-4c54-b070-8e20f04149b0",
+    "driverName": "Ramesh Patel",
+    "driverLicense": "GJ-DRV-1001",
+    "baseFare": 250,
+    "departureTime": "2026-06-02T09:00:00.000Z",
+    "fareMultipliers": {
+      "DEFAULT": 1.0,
+      "SEAT": 1.0,
+      "SLEEPER": 1.3
+    }
+  },
+  {
+    "notes": "Trip 4 - Central Gujarat Local",
+    "busId": "5a423b31-bf08-44b2-aef7-4dc5b112f8e6",
+    "routeId": "38dded3d-c53e-4a4c-a649-170e065430aa",
+    "conductorId": "07811e11-4806-4570-ae2f-b4f740c92acd",
+    "driverName": "Mahesh Kumar",
+    "driverLicense": "GJ-DRV-1003",
+    "baseFare": 150,
+    "departureTime": "2026-06-02T10:30:00.000Z",
+    "fareMultipliers": {
+      "DEFAULT": 1.0,
+      "SEAT": 1.0,
+      "SLEEPER": 1.5
+    }
+  },
+  {
+    "notes": "Trip 5 - Ahmedabad to Porbandar",
+    "busId": "2445e48f-ba4d-41e9-beb8-7049c4abec99",
+    "routeId": "c840ade9-48a9-4e27-896a-e21ff1ef64d5",
+    "conductorId": "4c471b7a-a656-4382-a780-103f1f269f15",
+    "driverName": "Dinesh Shah",
+    "driverLicense": "GJ-DRV-1004",
+    "baseFare": 450,
+    "departureTime": "2026-06-03T07:00:00.000Z",
+    "fareMultipliers": {
+      "DEFAULT": 1.0,
+      "SEAT": 1.2,
+      "SLEEPER": 1.8
+    }
+  },
+  {
+    "notes": "Trip 6 - Ahmedabad to Palitana - Shares origin with Trip 5",
+    "busId": "0fb5a7ba-d642-4e57-a81d-8a05d7d82656",
+    "routeId": "3300a303-77dd-49c9-807b-0e62d22e8830",
+    "conductorId": "2fe13a50-b139-454d-897f-56699dfa0854",
+    "driverName": "Suresh Desai",
+    "driverLicense": "GJ-DRV-1002",
+    "baseFare": 350,
+    "departureTime": "2026-06-03T08:30:00.000Z",
+    "fareMultipliers": {
+      "DEFAULT": 1.0,
+      "SEAT": 1.0,
+      "SLEEPER": 1.4
+    }
+  },
+  {
+    "notes": "Trip 7 - Ahmedabad to Bhuj (Night Sleeper)",
+    "busId": "22012944-c692-429d-aa41-8b905be611f9",
+    "routeId": "ee6cc23d-e5d9-42dc-829b-842787d4b103",
+    "conductorId": "3902e2ae-2fff-4c54-b070-8e20f04149b0",
+    "driverName": "Ramesh Patel",
+    "driverLicense": "GJ-DRV-1001",
+    "baseFare": 700,
+    "departureTime": "2026-06-04T22:00:00.000Z",
+    "fareMultipliers": {
+      "DEFAULT": 1.0,
+      "SEAT": 1.0,
+      "SLEEPER": 1.5
+    }
+  },
+  {
+    "notes": "Trip 8 - Bhuj to Veraval (Night Sleeper)",
+    "busId": "4418c7cb-9198-4d0c-99c2-ec4223994774",
+    "routeId": "1270b09e-2d96-4856-9389-31790fce37f4",
+    "conductorId": "07811e11-4806-4570-ae2f-b4f740c92acd",
+    "driverName": "Mahesh Kumar",
+    "driverLicense": "GJ-DRV-1003",
+    "baseFare": 800,
+    "departureTime": "2026-06-05T23:00:00.000Z",
+    "fareMultipliers": {
+      "DEFAULT": 1.0,
+      "SEAT": 1.0,
+      "SLEEPER": 1.5
+    }
+  }
+]

@@ -3,27 +3,27 @@
     "label": "Palanpur to Surat",
     "stops": [
       {
-        "stopId": "505716af-a789-413e-b64d-68e8c2facf5b",
+        "stopId": "ecac6fc3-309b-477a-89ea-75977fab034a",
         "distanceFromPrevStop_Km": 0,
         "travelTimeFromPrevStop_Min": 0
       },
       {
-        "stopId": "7a5db660-f107-4eb3-a540-e2db7c30d561",
+        "stopId": "6d28b9a4-edf4-4875-8a6c-5dd89543b907",
         "distanceFromPrevStop_Km": 65,
         "travelTimeFromPrevStop_Min": 75
       },
       {
-        "stopId": "5f065cf0-6e35-4a62-8ac5-caaa06b35829",
+        "stopId": "83bb5ba6-61a1-4897-96d5-18e0a40cc1e6",
         "distanceFromPrevStop_Km": 75,
         "travelTimeFromPrevStop_Min": 90
       },
       {
-        "stopId": "a951d7ca-a2cf-4d64-9b99-e6d575d704a3",
+        "stopId": "6001c126-8469-4ed3-b1fd-a0bca98f0e56",
         "distanceFromPrevStop_Km": 110,
         "travelTimeFromPrevStop_Min": 120
       },
       {
-        "stopId": "18293126-0834-430e-8a01-11ae640c2821",
+        "stopId": "15d70947-23b4-4d77-b11d-64324d0cc07c",
         "distanceFromPrevStop_Km": 150,
         "travelTimeFromPrevStop_Min": 180
       }
@@ -33,22 +33,22 @@
     "label": "Ahmedabad to Porbandar",
     "stops": [
       {
-        "stopId": "5f065cf0-6e35-4a62-8ac5-caaa06b35829",
+        "stopId": "83bb5ba6-61a1-4897-96d5-18e0a40cc1e6",
         "distanceFromPrevStop_Km": 0,
         "travelTimeFromPrevStop_Min": 0
       },
       {
-        "stopId": "b05c94da-352a-48e3-8259-1bd4a314bb95",
+        "stopId": "5cdaa2c1-d229-4494-8cfc-7e39be74b2f6",
         "distanceFromPrevStop_Km": 215,
         "travelTimeFromPrevStop_Min": 240
       },
       {
-        "stopId": "ee05743f-719c-4eb6-a029-720ca0cdfbcf",
+        "stopId": "83727f34-978a-4bac-9006-7bf915d40c20",
         "distanceFromPrevStop_Km": 90,
         "travelTimeFromPrevStop_Min": 110
       },
       {
-        "stopId": "f057af97-6ec2-421c-b161-babf7c7b39f5",
+        "stopId": "ae57ecf8-3fa8-474e-be92-c9d0f2cf1b57",
         "distanceFromPrevStop_Km": 120,
         "travelTimeFromPrevStop_Min": 135
       }
@@ -58,27 +58,27 @@
     "label": "Ahmedabad to Bhuj",
     "stops": [
       {
-        "stopId": "5f065cf0-6e35-4a62-8ac5-caaa06b35829",
+        "stopId": "83bb5ba6-61a1-4897-96d5-18e0a40cc1e6",
         "distanceFromPrevStop_Km": 0,
         "travelTimeFromPrevStop_Min": 0
       },
       {
-        "stopId": "ace78458-d808-42d9-844a-29d19d729c12",
+        "stopId": "5c97a110-ca8c-4344-a636-ccb0acc07c18",
         "distanceFromPrevStop_Km": 130,
         "travelTimeFromPrevStop_Min": 150
       },
       {
-        "stopId": "f820d125-efdc-4d70-856d-c1856a9cb940",
+        "stopId": "c93aae2b-b40a-4640-a12a-51221b7addb9",
         "distanceFromPrevStop_Km": 85,
         "travelTimeFromPrevStop_Min": 90
       },
       {
-        "stopId": "f959d4fa-7f10-4050-94a7-145237942bf7",
+        "stopId": "f12cfe02-b8cd-4373-a9c3-c0294894b24a",
         "distanceFromPrevStop_Km": 140,
         "travelTimeFromPrevStop_Min": 160
       },
       {
-        "stopId": "0f62ccf6-b596-45af-b02d-496a48406a49",
+        "stopId": "efeb0592-fb01-47e8-a1de-cab5513c007c",
         "distanceFromPrevStop_Km": 60,
         "travelTimeFromPrevStop_Min": 70
       }
@@ -88,22 +88,22 @@
     "label": "Central Gujarat Local (Ahmedabad to Vadodara via Anand)",
     "stops": [
       {
-        "stopId": "5f065cf0-6e35-4a62-8ac5-caaa06b35829",
+        "stopId": "83bb5ba6-61a1-4897-96d5-18e0a40cc1e6",
         "distanceFromPrevStop_Km": 0,
         "travelTimeFromPrevStop_Min": 0
       },
       {
-        "stopId": "03a05f47-5f2f-4562-a33d-c3546ffff283",
+        "stopId": "7a82a0c5-940d-4c9b-a626-fb233de41cc9",
         "distanceFromPrevStop_Km": 60,
         "travelTimeFromPrevStop_Min": 75
       },
       {
-        "stopId": "9f78105a-bffb-4e90-8628-27b8ace98fda",
+        "stopId": "a4400e03-f4fe-4a64-8f4c-731fa6e2e459",
         "distanceFromPrevStop_Km": 20,
         "travelTimeFromPrevStop_Min": 30
       },
       {
-        "stopId": "a951d7ca-a2cf-4d64-9b99-e6d575d704a3",
+        "stopId": "6001c126-8469-4ed3-b1fd-a0bca98f0e56",
         "distanceFromPrevStop_Km": 45,
         "travelTimeFromPrevStop_Min": 55
       }
@@ -113,27 +113,27 @@
     "label": "South Gujarat Coastal (Vadodara to Vapi)",
     "stops": [
       {
-        "stopId": "a951d7ca-a2cf-4d64-9b99-e6d575d704a3",
+        "stopId": "6001c126-8469-4ed3-b1fd-a0bca98f0e56",
         "distanceFromPrevStop_Km": 0,
         "travelTimeFromPrevStop_Min": 0
       },
       {
-        "stopId": "22412044-157b-48e6-a787-a980f6132f07",
+        "stopId": "024899d9-3dcd-4008-b693-97f05afd0d6e",
         "distanceFromPrevStop_Km": 75,
         "travelTimeFromPrevStop_Min": 85
       },
       {
-        "stopId": "18293126-0834-430e-8a01-11ae640c2821",
+        "stopId": "15d70947-23b4-4d77-b11d-64324d0cc07c",
         "distanceFromPrevStop_Km": 75,
         "travelTimeFromPrevStop_Min": 90
       },
       {
-        "stopId": "369f3558-7731-42dd-89f6-62499a8377bb",
+        "stopId": "e08581bc-847f-4bef-93c5-7b4b3bbbb050",
         "distanceFromPrevStop_Km": 95,
         "travelTimeFromPrevStop_Min": 110
       },
       {
-        "stopId": "a155af3d-341a-49f6-8944-da04566b02cd",
+        "stopId": "3bb28b93-deaa-4a75-89c1-0f7c3f3501c5",
         "distanceFromPrevStop_Km": 30,
         "travelTimeFromPrevStop_Min": 40
       }
@@ -143,27 +143,27 @@
     "label": "East Highway Connect (Surat to Dahod)",
     "stops": [
       {
-        "stopId": "18293126-0834-430e-8a01-11ae640c2821",
+        "stopId": "15d70947-23b4-4d77-b11d-64324d0cc07c",
         "distanceFromPrevStop_Km": 0,
         "travelTimeFromPrevStop_Min": 0
       },
       {
-        "stopId": "22412044-157b-48e6-a787-a980f6132f07",
+        "stopId": "024899d9-3dcd-4008-b693-97f05afd0d6e",
         "distanceFromPrevStop_Km": 75,
         "travelTimeFromPrevStop_Min": 90
       },
       {
-        "stopId": "a951d7ca-a2cf-4d64-9b99-e6d575d704a3",
+        "stopId": "6001c126-8469-4ed3-b1fd-a0bca98f0e56",
         "distanceFromPrevStop_Km": 75,
         "travelTimeFromPrevStop_Min": 85
       },
       {
-        "stopId": "f2763d8d-5e7b-458a-a786-397688771bfa",
+        "stopId": "b6099376-174e-412f-9ae9-270340a68e76",
         "distanceFromPrevStop_Km": 80,
         "travelTimeFromPrevStop_Min": 95
       },
       {
-        "stopId": "1974a1b5-f356-43f1-98fa-09ad7a93215c",
+        "stopId": "cf3904cc-c141-4d1e-be75-6fb1fe19535f",
         "distanceFromPrevStop_Km": 70,
         "travelTimeFromPrevStop_Min": 85
       }
@@ -173,32 +173,32 @@
     "label": "Bhuj to Veraval",
     "stops": [
       {
-        "stopId": "0f62ccf6-b596-45af-b02d-496a48406a49",
+        "stopId": "efeb0592-fb01-47e8-a1de-cab5513c007c",
         "distanceFromPrevStop_Km": 0,
         "travelTimeFromPrevStop_Min": 0
       },
       {
-        "stopId": "f959d4fa-7f10-4050-94a7-145237942bf7",
+        "stopId": "f12cfe02-b8cd-4373-a9c3-c0294894b24a",
         "distanceFromPrevStop_Km": 60,
         "travelTimeFromPrevStop_Min": 70
       },
       {
-        "stopId": "f820d125-efdc-4d70-856d-c1856a9cb940",
+        "stopId": "c93aae2b-b40a-4640-a12a-51221b7addb9",
         "distanceFromPrevStop_Km": 140,
         "travelTimeFromPrevStop_Min": 160
       },
       {
-        "stopId": "b05c94da-352a-48e3-8259-1bd4a314bb95",
+        "stopId": "5cdaa2c1-d229-4494-8cfc-7e39be74b2f6",
         "distanceFromPrevStop_Km": 65,
         "travelTimeFromPrevStop_Min": 80
       },
       {
-        "stopId": "ef183fa7-3a92-41e5-95a8-7a7ce066239c",
+        "stopId": "e9d0bccf-a878-4a9f-9ca7-496deaf8f9f8",
         "distanceFromPrevStop_Km": 105,
         "travelTimeFromPrevStop_Min": 125
       },
       {
-        "stopId": "71d93dc1-d1ea-4f7a-a1a3-c80679918901",
+        "stopId": "195757fa-15cd-4127-b4f3-cd404bd3e478",
         "distanceFromPrevStop_Km": 90,
         "travelTimeFromPrevStop_Min": 110
       }
@@ -208,22 +208,22 @@
     "label": "Palanpur to Ahmedabad Gita Mandir",
     "stops": [
       {
-        "stopId": "505716af-a789-413e-b64d-68e8c2facf5b",
+        "stopId": "ecac6fc3-309b-477a-89ea-75977fab034a",
         "distanceFromPrevStop_Km": 0,
         "travelTimeFromPrevStop_Min": 0
       },
       {
-        "stopId": "7a5db660-f107-4eb3-a540-e2db7c30d561",
+        "stopId": "6d28b9a4-edf4-4875-8a6c-5dd89543b907",
         "distanceFromPrevStop_Km": 65,
         "travelTimeFromPrevStop_Min": 75
       },
       {
-        "stopId": "f4a4eadd-8544-402a-a0af-4476cd62fcab",
+        "stopId": "6697ca63-93d8-49dc-81e0-2be0787bf119",
         "distanceFromPrevStop_Km": 60,
         "travelTimeFromPrevStop_Min": 70
       },
       {
-        "stopId": "0c213c18-5dc1-4e98-b905-a6c223e7159a",
+        "stopId": "83bb5ba6-61a1-4897-96d5-18e0a40cc1e6",
         "distanceFromPrevStop_Km": 30,
         "travelTimeFromPrevStop_Min": 45
       }
@@ -233,27 +233,27 @@
     "label": "Vapi to Rajkot via Ahmedabad",
     "stops": [
       {
-        "stopId": "a155af3d-341a-49f6-8944-da04566b02cd",
+        "stopId": "3bb28b93-deaa-4a75-89c1-0f7c3f3501c5",
         "distanceFromPrevStop_Km": 0,
         "travelTimeFromPrevStop_Min": 0
       },
       {
-        "stopId": "18293126-0834-430e-8a01-11ae640c2821",
+        "stopId": "15d70947-23b4-4d77-b11d-64324d0cc07c",
         "distanceFromPrevStop_Km": 125,
         "travelTimeFromPrevStop_Min": 150
       },
       {
-        "stopId": "a951d7ca-a2cf-4d64-9b99-e6d575d704a3",
+        "stopId": "6001c126-8469-4ed3-b1fd-a0bca98f0e56",
         "distanceFromPrevStop_Km": 150,
         "travelTimeFromPrevStop_Min": 180
       },
       {
-        "stopId": "5f065cf0-6e35-4a62-8ac5-caaa06b35829",
+        "stopId": "83bb5ba6-61a1-4897-96d5-18e0a40cc1e6",
         "distanceFromPrevStop_Km": 110,
         "travelTimeFromPrevStop_Min": 120
       },
       {
-        "stopId": "b05c94da-352a-48e3-8259-1bd4a314bb95",
+        "stopId": "5cdaa2c1-d229-4494-8cfc-7e39be74b2f6",
         "distanceFromPrevStop_Km": 215,
         "travelTimeFromPrevStop_Min": 240
       }
@@ -263,22 +263,22 @@
     "label": "Ahmedabad to Palitana",
     "stops": [
       {
-        "stopId": "5f065cf0-6e35-4a62-8ac5-caaa06b35829",
+        "stopId": "83bb5ba6-61a1-4897-96d5-18e0a40cc1e6",
         "distanceFromPrevStop_Km": 0,
         "travelTimeFromPrevStop_Min": 0
       },
       {
-        "stopId": "4dd1def5-cb43-43f4-8f94-aba7f33f134a",
+        "stopId": "3d6cf44a-f338-43b6-878d-00ecd2b5b673",
         "distanceFromPrevStop_Km": 150,
         "travelTimeFromPrevStop_Min": 170
       },
       {
-        "stopId": "01cdb946-31f9-4418-9bb6-4b24e7762fd6",
+        "stopId": "4179867f-1467-4d30-8a6a-327afb9eb9fe",
         "distanceFromPrevStop_Km": 90,
         "travelTimeFromPrevStop_Min": 105
       },
       {
-        "stopId": "ae9ad608-bf76-4f0d-b746-3c2afbd1ed2d",
+        "stopId": "a6399e7d-aa43-4a04-bbb1-9c1a4e36ad26",
         "distanceFromPrevStop_Km": 55,
         "travelTimeFromPrevStop_Min": 65
       }
