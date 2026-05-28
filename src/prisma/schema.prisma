@@ -154,7 +154,7 @@ model Trip {
   createdAt       DateTime     @default(now())
   fareMultipliers Json         @map("fare_multipliers")
 
-  @@index([routeId])
+  @@index([routeId, departureTime])
   @@map("trips")
 }
 
