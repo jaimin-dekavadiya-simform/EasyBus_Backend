@@ -9,7 +9,8 @@
     "start": "node dist/server.js",
     "prepare": "husky",
     "lint": "eslint src --ext .ts --fix",
-    "seed": "tsx src/seed/seed.ts"
+    "seed": "tsx src/seed/seed.ts",
+    "postinstall": "prisma generate"
   },
   "lint-staged": {
     "*.{ts,js}": [
