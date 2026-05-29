@@ -1,3 +1,4 @@
+import { BookableSeatTypes } from './seat-layout.types';
 import { SeatLayoutInjectedInput, SeatLayoutInput } from './seat-layout.validation';
 
 export const injectTotalSeats = (layout: SeatLayoutInput): SeatLayoutInjectedInput => {
@@ -5,7 +6,7 @@ export const injectTotalSeats = (layout: SeatLayoutInput): SeatLayoutInjectedInp
   const upperDeck = layout.config.decks.upper;
   const allEntities = [...lowerDeck, ...(upperDeck || [])];
   const filteredSeats = allEntities.filter(
-    (entity) => entity.type === 'SEAT' || entity.type === 'SLEEPER',
+    (entity) => entity.type === BookableSeatTypes.SEAT || entity.type === BookableSeatTypes.SLEEPER,
   );
   const injectedLayout: SeatLayoutInjectedInput = {
     layoutName: layout.layoutName,
