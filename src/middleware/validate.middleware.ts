@@ -10,12 +10,17 @@ export const validate =
       next();
     } catch (error: unknown) {
       if (error instanceof ZodError) {
+        const formattedErrors = error.issues.map((issue) => ({
+          field: issue.path.join('.'),
+          message: issue.message,
+        }));
         return res.status(400).json({
           success: false,
           message: 'Validation failed',
-          errors: error.issues,
+          errors: formattedErrors,
         });
       }
+
       return next(error);
     }
   };

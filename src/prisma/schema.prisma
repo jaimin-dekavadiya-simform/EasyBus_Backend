@@ -13,13 +13,12 @@ datasource db {
 }
 
 model User {
-  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  firstName    String   @map("first_name")
-  lastName     String   @map("last_name")
-  email        String   @unique
-  passwordHash String   @map("password_hash")
-  role         UserRole
-
+  id               String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  firstName        String        @map("first_name")
+  lastName         String        @map("last_name")
+  email            String        @unique
+  passwordHash     String        @map("password_hash")
+  role             UserRole
   orgId            String?       @map("org_id") @db.Uuid
   organization     Organization? @relation(fields: [orgId], references: [id], onDelete: Cascade)
   employeeCode     String?       @map("employee_code")
@@ -97,15 +96,16 @@ model Route {
 }
 
 model RouteStops {
-  id                         String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  stopId                     String @map("stop_id") @db.Uuid
-  stop                       Stop   @relation(fields: [stopId], references: [id], onDelete: Cascade)
-  routeId                    String @map("route_id") @db.Uuid
-  route                      Route  @relation(fields: [routeId], references: [id], onDelete: Cascade)
-  sequenceOrder              Int    @map("sequence_order")
-  distanceFromPrevStop_Km    Float  @map("distance_from_prev_stop_km")
-  travelTimeFromPrevStop_Min Int    @map("travel_time_from_prev_stop_min")
+  id                       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  stopId                   String @map("stop_id") @db.Uuid
+  stop                     Stop   @relation(fields: [stopId], references: [id], onDelete: Cascade)
+  routeId                  String @map("route_id") @db.Uuid
+  route                    Route  @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  sequenceOrder            Int    @map("sequence_order")
+  distanceFromOrigin_Km    Float  @map("distance_from_origin_km")
+  travelTimeFromOrigin_Min Int    @map("travel_time_from_origin_min")
 
+  @@unique([routeId, sequenceOrder])
   @@index([routeId, sequenceOrder])
   @@index([stopId])
   @@map("route_stops")
@@ -137,6 +137,7 @@ enum BusClasses {
 
 model Trip {
   id              String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  label           String
   orgId           String       @map("org_id") @db.Uuid
   organization    Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
   routeId         String       @map("route_id") @db.Uuid
@@ -151,7 +152,7 @@ model Trip {
   arrivalTime     DateTime     @map("arrival_time")
   baseFare        Float        @map("base_fare")
   status          TripStatus   @default(SCHEDULED)
-  createdAt       DateTime     @default(now())
+  createdAt       DateTime     @default(now()) @map("created_at")
   fareMultipliers Json         @map("fare_multipliers")
 
   @@index([routeId, departureTime])

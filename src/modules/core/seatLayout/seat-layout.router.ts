@@ -1,5 +1,5 @@
 import { authenticateUser, authorizeUser } from '@/middleware/auth.middleware';
-import { UserRoles } from '@/types/user.types';
+import { UserRoles } from '@/modules/core/user/user.types';
 import { asyncHandler } from '@/utils/asyncHandler';
 import { Router } from 'express';
 import { createSeatLayoutController } from './seat-layout.controller';

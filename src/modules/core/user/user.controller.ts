@@ -2,7 +2,7 @@ import { RequestHandler } from 'express';
 import { createUserService } from './user.service';
 import { ApiResponse } from '@/utils/apiResponse';
 import { HttpStatusCode } from '@/types/utils.types';
-import { UserRoles } from '@/types/user.types';
+import { UserRoles } from '@/modules/core/user/user.types';
 
 export const createUserController: RequestHandler = async (req, res): Promise<void> => {
   const user = await createUserService(req.body, req.user?.role as UserRoles);

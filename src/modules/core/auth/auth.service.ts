@@ -2,31 +2,26 @@ import { RegisterUserInput, LoginUserInput, ResendUserEmailInput } from './auth.
 import { comparePasswordHash, hashPassword, hashToken } from '@/utils/crypto.utils';
 import ApiError from '@/utils/apiError';
 import { sendVerificationMail } from '@/modules/common/email/email.service';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
 import { User } from '@/generated/prisma/client';
 import { HttpStatusCode } from '@/types/utils.types';
 import { createUser, findUserByEmail, findUserById, updateUserById } from '../user/user.repository';
-import { UserRoles } from '@/types/user.types';
-import { generateJwtToken, verifyToken } from '@/utils/auth.utils';
+import { UserRoles } from '@/modules/core/user/user.types';
+import { generateJwtToken, verifyToken } from '@/modules/core/auth/auth.utils';
 import { config } from '@/config/env';
 
 export const registerUserService = async (data: RegisterUserInput): Promise<User> => {
   const hashedPassword = await hashPassword(data.password);
-  let user: User;
-  try {
-    user = await createUser({
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      passwordHash: hashedPassword,
-      role: UserRoles.PASSENGER,
-    });
-  } catch (error) {
-    if (error instanceof PrismaClientKnownRequestError && error.code === 'P2002') {
-      throw new ApiError(HttpStatusCode.CONFLICT, 'Email already registered');
-    }
-    throw error;
+  const existingUser = await findUserByEmail(data.email);
+  if (existingUser) {
+    throw new ApiError(HttpStatusCode.CONFLICT, 'Email already registered');
   }
+  const user = await createUser({
+    firstName: data.firstName,
+    lastName: data.lastName,
+    email: data.email,
+    passwordHash: hashedPassword,
+    role: UserRoles.PASSENGER,
+  });
   sendVerificationMail(user);
   return user;
 };

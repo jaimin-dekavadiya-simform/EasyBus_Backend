@@ -7,12 +7,19 @@ export const createBus = async (data: BusUncheckedCreateInput): Promise<Bus> => 
   return bus;
 };
 
-export const findBusWithTripsById = async (
-  id: string,
-): Promise<(Bus & { trips: Trip[] }) | null> => {
+export const findBusWithTripsById = async (id: string): Promise<{ trips: Trip[] } | null> => {
   const bus = await prisma.bus.findUnique({
     where: { id },
     include: { trips: true },
+  });
+  return bus;
+};
+
+export const findBusByRegistrationNumber = async (
+  registrationNumber: string,
+): Promise<Bus | null> => {
+  const bus = await prisma.bus.findUnique({
+    where: { registrationNumber },
   });
   return bus;
 };

@@ -1,9 +1,9 @@
 import ApiError from '@/utils/apiError';
 import nodemailer from 'nodemailer';
-import { SendEmailOptions } from '@/types/mailer.types';
+import { SendEmailOptions } from '@/modules/common/email/mailer.types';
 import { compileVerificationMailTemplate } from './email.templates';
 import { config } from '@/config/env';
-import { generateJwtToken } from '../../../utils/auth.utils';
+import { generateJwtToken } from '../../core/auth/auth.utils';
 import { User } from '@/generated/prisma/client';
 import { HttpStatusCode } from '@/types/utils.types';
 import { logger } from '@/utils/logger';

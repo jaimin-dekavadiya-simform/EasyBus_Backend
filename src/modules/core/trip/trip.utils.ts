@@ -6,11 +6,12 @@ import { HttpStatusCode } from '@/types/utils.types';
 export const isTimeOverlapping = (duration1: Duration, duration2: Duration): boolean => {
   return duration1.end > duration2.start && duration1.start < duration2.end;
 };
+
 export const calculateArrivalTime = (departureTime: Date, routeStops: RouteStops[]): Date => {
   const arrivalTime = new Date(departureTime);
-  for (const stop of routeStops) {
-    arrivalTime.setMinutes(arrivalTime.getMinutes() + stop.travelTimeFromPrevStop_Min);
-  }
+  arrivalTime.setMinutes(
+    arrivalTime.getMinutes() + routeStops[routeStops.length - 1].travelTimeFromOrigin_Min,
+  );
   return arrivalTime;
 };
 

@@ -3,6 +3,6 @@ import { Trip } from '@/generated/prisma/client';
 import { TripUncheckedCreateInput } from '@/generated/prisma/models';
 
 export const createTrip = async (data: TripUncheckedCreateInput): Promise<Trip> => {
-  const trip = prisma.trip.create({ data });
+  const trip = await prisma.trip.create({ data });
   return trip;
 };

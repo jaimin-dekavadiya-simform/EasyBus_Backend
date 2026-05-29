@@ -1,6 +1,6 @@
 import { authenticateUser, authorizeUser } from '@/middleware/auth.middleware';
 import { validate } from '@/middleware/validate.middleware';
-import { UserRoles } from '@/types/user.types';
+import { UserRoles } from '@/modules/core/user/user.types';
 import { Router } from 'express';
 import { createRouteSchema, createStopSchema } from './route.validation';
 import { ValidationTarget } from '@/types/utils.types';

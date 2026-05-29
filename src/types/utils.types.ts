@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express';
-import { UserRoles } from './user.types';
+import { UserRoles } from '../modules/core/user/user.types';
 
 export type TasyncHandler = (
   func: RequestHandler,
