@@ -26,33 +26,27 @@ export const createTripSchema = z.object({
   conductorId: z.uuid('Invalid conductor ID'),
   busId: z.uuid('Invalid bus ID'),
   driverName: z
-    .string({
-      error: 'Driver name is required',
-    })
+    .string('Driver name is required')
     .trim()
     .min(3, 'Driver name must be at least 3 characters')
     .max(100, 'Driver name must not exceed 100 characters'),
   driverLicense: z
-    .string({
-      error: 'Driver license is required',
-    })
+    .string('Driver license is required')
     .trim()
     .min(3, 'Driver license must be at least 3 characters')
     .max(50, 'Driver license must not exceed 50 characters'),
   departureTime: z.coerce
-    .date({
-      error: 'Invalid departure time',
-    })
-    .refine((date) => date.getTime() > Date.now(), {
-      message: 'Departure time must be in the future',
-    }),
-  baseFare: z
-    .number({
-      error: 'Base fare must be a number',
-    })
-    .positive('Base fare must be greater than 0'),
-
+    .date('Invalid departure time')
+    .refine((date) => date.getTime() > Date.now(), 'Departure time must be in the future'),
+  baseFare: z.number('Base fare must be a number').positive('Base fare must be greater than 0'),
   fareMultipliers: fareMultiplierSchema,
 });
 
+export const searchTripSchema = z.object({
+  sourceId: z.uuid('Invalid source Id'),
+  destinationId: z.uuid('Invalid destination Id'),
+  departureDate: z.coerce.date('please provide valid departure date'),
+});
+
+export type SearchTripInput = z.infer<typeof searchTripSchema>;
 export type CreateTripInput = z.infer<typeof createTripSchema>;

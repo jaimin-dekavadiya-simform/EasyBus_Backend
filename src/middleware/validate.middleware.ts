@@ -1,12 +1,15 @@
 import { ZodError, ZodObject } from 'zod';
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { ValidationTarget } from '@/types/utils.types';
+import { ValidatedInput } from '@/types/express';
 
 export const validate =
   (schema: ZodObject, validationTarget: ValidationTarget): RequestHandler =>
   (req: Request, res: Response, next: NextFunction) => {
     try {
-      schema.parse(req[validationTarget]);
+      const validated: ValidatedInput = {};
+      validated[validationTarget] = schema.parse(req[validationTarget]);
+      req.validated = validated;
       next();
     } catch (error: unknown) {
       if (error instanceof ZodError) {

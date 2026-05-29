@@ -3,13 +3,14 @@ import { findOrganizationById } from '../organization/organization.repository';
 import { resolveOrgId } from '@/modules/core/auth/auth.utils';
 import { AuthUser, HttpStatusCode } from '@/types/utils.types';
 import ApiError from '@/utils/apiError';
-import { findRouteWithStopsById } from '../route/route.repository';
-import { CreateTripInput } from './trip.validation';
+import { findManyStopsByStopIds, findRouteWithStopsById } from '../route/route.repository';
+import { CreateTripInput, SearchTripInput } from './trip.validation';
 import { findUserWithTripsById } from '../user/user.repository';
 import { UserRoles } from '@/modules/core/user/user.types';
 import { calculateArrivalTime, checkTripsOverlap } from './trip.utils';
 import { findBusWithTripsById } from '../bus/bus.repository';
-import { createTrip } from './trip.repository';
+import { createTrip, findTripsBetweenStops } from './trip.repository';
+import { SearchedTrip } from './trip.types';
 
 export const createTripService = async (data: CreateTripInput, user: AuthUser): Promise<Trip> => {
   const orgId = resolveOrgId(data, user);
@@ -41,4 +42,15 @@ export const createTripService = async (data: CreateTripInput, user: AuthUser): 
   checkTripsOverlap({ departureTime: data.departureTime, arrivalTime }, bus.trips);
   const trip = await createTrip({ ...data, orgId, arrivalTime });
   return trip;
+};
+
+export const searchTripsBetweenStopsService = async (
+  data: SearchTripInput,
+): Promise<SearchedTrip[]> => {
+  const existingStops = await findManyStopsByStopIds([data.sourceId, data.destinationId]);
+  if (existingStops.length !== 2) {
+    throw new ApiError(HttpStatusCode.NOT_FOUND, 'Stops not found');
+  }
+  const trips = await findTripsBetweenStops(data);
+  return trips;
 };

@@ -11,12 +11,14 @@ export const createTrip = async (data: TripUncheckedCreateInput): Promise<Trip> 
 export const findTripsBetweenStops = async (data: {
   sourceId: string;
   destinationId: string;
-  departureTime: Date;
+  departureDate: Date;
 }): Promise<SearchedTrip[]> => {
-  const start = data.departureTime.toISOString();
-  const end = data.departureTime.setHours(24);
+  const start = new Date(data.departureDate);
+  start.setHours(0, 0, 0, 0);
+  const end = new Date(data.departureDate);
+  end.setHours(23, 59, 59, 999);
 
-  const result: SearchedTrip[] = await prisma.$queryRaw` 
+  const result: SearchedTrip[] = await prisma.$queryRaw`
   SELECT t.*,
     (dst.distance_from_origin_km - src.distance_from_origin_km) as calculatedDistance,
     (dst.travel_time_from_origin_min - src.travel_time_from_origin_min) as calculatedTravelTime
