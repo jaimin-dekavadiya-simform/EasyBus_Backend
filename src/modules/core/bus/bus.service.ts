@@ -3,7 +3,7 @@ import { CreateBusInput } from './bus.validation';
 import { createBus, findBusByRegistrationNumber } from './bus.repository';
 import ApiError from '@/utils/apiError';
 import { AuthUser, HttpStatusCode } from '@/types/utils.types';
-import { resolveOrgId } from '@/utils/auth.utils';
+import { resolveOrgId } from '@/modules/core/auth/auth.utils';
 import { findOrganizationById } from '../organization/organization.repository';
 import { findSeatLayoutById } from '../seatLayout/seat-layout.repository';
 

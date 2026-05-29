@@ -12,20 +12,34 @@ const LayoutItemSchema = z.object({
     z.literal('DOOR'),
   ]),
 
-  row: z.number().int().nonnegative(),
-  col: z.number().int().nonnegative(),
+  row: z.number().int('Row must be an integer').nonnegative('Row cannot be negative'),
+  col: z.number().int('Column must be an integer').nonnegative('Column cannot be negative'),
 
-  rowSpan: z.number().int().positive().default(1),
-  colSpan: z.number().int().positive().default(1),
+  rowSpan: z
+    .number()
+    .int('Row span must be an integer')
+    .positive('Row span must be at least 1')
+    .default(1),
+  colSpan: z
+    .number()
+    .int('Column span must be an integer')
+    .positive('Column span must be at least 1')
+    .default(1),
 });
 
 export const SeatLayoutSchema = z.object({
   layoutName: z.string().min(1, 'Layout Name is Required'),
   config: z.object({
     dimensions: z.object({
-      columns: z.number().int().positive(),
-      rows: z.number().int().positive(),
-      noOfDecks: z.number().int().positive(),
+      columns: z
+        .number()
+        .int('Columns must be an integer')
+        .positive('Columns must be greater than 0'),
+      rows: z.number().int('Rows must be an integer').positive('Rows must be greater than 0'),
+      noOfDecks: z
+        .number()
+        .int('Number of decks must be an integer')
+        .positive('Number of decks must be at least 1'),
     }),
     decks: z.object({
       lower: z.array(LayoutItemSchema),
@@ -36,7 +50,7 @@ export const SeatLayoutSchema = z.object({
 
 export const SeatLayoutSchemaInjected = SeatLayoutSchema.extend({
   config: SeatLayoutSchema.shape.config.extend({
-    totalSeats: z.int(),
+    totalSeats: z.number().int('Total seats must be an integer'),
   }),
 });
 

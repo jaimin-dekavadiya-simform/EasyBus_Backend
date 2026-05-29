@@ -1,4 +1,4 @@
-import { VerificationMailData } from '@/types/mailer.types';
+import { VerificationMailData } from '@/modules/common/email/mailer.types';
 
 export const compileVerificationMailTemplate = (data: VerificationMailData): string => {
   const html = `<!DOCTYPE html>

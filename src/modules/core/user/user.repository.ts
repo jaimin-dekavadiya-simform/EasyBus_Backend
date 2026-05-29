@@ -30,3 +30,13 @@ export const findUserWithTripsById = async (
   const user = await prisma.user.findUnique({ where: { id: userId }, include: { trips: true } });
   return user;
 };
+
+export const findUserByEmployeeCode = async (
+  employeeCode: string,
+  orgId: string,
+): Promise<User | null> => {
+  const user = await prisma.user.findFirst({
+    where: { employeeCode, orgId },
+  });
+  return user;
+};

@@ -5,8 +5,8 @@ import { sendVerificationMail } from '@/modules/common/email/email.service';
 import { User } from '@/generated/prisma/client';
 import { HttpStatusCode } from '@/types/utils.types';
 import { createUser, findUserByEmail, findUserById, updateUserById } from '../user/user.repository';
-import { UserRoles } from '@/types/user.types';
-import { generateJwtToken, verifyToken } from '@/utils/auth.utils';
+import { UserRoles } from '@/modules/core/user/user.types';
+import { generateJwtToken, verifyToken } from '@/modules/core/auth/auth.utils';
 import { config } from '@/config/env';
 
 export const registerUserService = async (data: RegisterUserInput): Promise<User> => {

@@ -1,9 +1,9 @@
 import { HttpStatusCode } from './../types/utils.types';
 import { config } from '@/config/env';
 import ApiError from '@/utils/apiError';
-import { verifyToken } from '@/utils/auth.utils';
+import { verifyToken } from '@/modules/core/auth/auth.utils';
 import { RequestHandler } from 'express';
-import { UserRoles } from '@/types/user.types';
+import { UserRoles } from '@/modules/core/user/user.types';
 
 export const authenticateUser: RequestHandler = (req, _res, next) => {
   const accessToken: string = req.cookies?.accessToken;

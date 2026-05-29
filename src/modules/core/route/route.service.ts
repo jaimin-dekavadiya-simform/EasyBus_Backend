@@ -9,7 +9,7 @@ import {
   findRouteByLabelOrgId,
   findStopByName,
 } from './route.repository';
-import { resolveOrgId } from '@/utils/auth.utils';
+import { resolveOrgId } from '@/modules/core/auth/auth.utils';
 import { findOrganizationById } from '../organization/organization.repository';
 import { RouteStopsUncheckedCreateWithoutRouteInput } from '@/generated/prisma/models';
 

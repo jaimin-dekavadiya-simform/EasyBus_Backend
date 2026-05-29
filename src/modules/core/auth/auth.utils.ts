@@ -1,7 +1,7 @@
 import jwt, { SignOptions, Secret } from 'jsonwebtoken';
-import ApiError from './apiError';
+import ApiError from '../../../utils/apiError';
 import { AuthUser, HttpStatusCode } from '@/types/utils.types';
-import { UserRoles } from '@/types/user.types';
+import { UserRoles } from '@/modules/core/user/user.types';
 const { JsonWebTokenError, TokenExpiredError } = jwt;
 
 export const generateJwtToken = <T extends object>(
