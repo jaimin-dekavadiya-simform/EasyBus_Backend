@@ -1,7 +1,7 @@
 import z from 'zod';
 import { BookableSeatTypes } from '../seatLayout/seat-layout.types';
 
-const optionalSeatTypes = Object.values(BookableSeatTypes).reduce(
+const optionalSeatTypes = (Object.values(BookableSeatTypes) as BookableSeatTypes[]).reduce(
   (acc, seat) => {
     acc[seat] = z
       .number({ error: 'Fare multiplier must be a number' })
@@ -9,7 +9,7 @@ const optionalSeatTypes = Object.values(BookableSeatTypes).reduce(
       .optional();
     return acc;
   },
-  {} as Record<string, z.ZodOptional<z.ZodNumber>>,
+  {} as { [K in BookableSeatTypes]: z.ZodOptional<z.ZodNumber> },
 );
 
 export const fareMultiplierSchema = z.object({
@@ -48,5 +48,12 @@ export const searchTripSchema = z.object({
   departureDate: z.coerce.date('please provide valid departure date'),
 });
 
+export const getTripDetailSchema = z.object({
+  tripId: z.uuid('Invalid Trip Id'),
+  sourceId: z.uuid('Invalid Source Id'),
+  destinationId: z.uuid('Invalid Destination Id'),
+});
+
+export type GetTripDetailsInput = z.infer<typeof getTripDetailSchema>;
 export type SearchTripInput = z.infer<typeof searchTripSchema>;
 export type CreateTripInput = z.infer<typeof createTripSchema>;

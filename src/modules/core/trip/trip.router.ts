@@ -2,10 +2,14 @@ import { authenticateUser, authorizeUser } from '@/middleware/auth.middleware';
 import { validate } from '@/middleware/validate.middleware';
 import { UserRoles } from '@/modules/core/user/user.types';
 import { Router } from 'express';
-import { createTripSchema, searchTripSchema } from './trip.validation';
+import { createTripSchema, getTripDetailSchema, searchTripSchema } from './trip.validation';
 import { ValidationTarget } from '@/types/utils.types';
 import { asyncHandler } from '@/utils/asyncHandler';
-import { createTripController, searchTripsBetweenStopsController } from './trip.controller';
+import {
+  createTripController,
+  getTripDetailsWithAvailableSeatsController,
+  searchTripsBetweenStopsController,
+} from './trip.controller';
 
 const router = Router();
 
@@ -21,5 +25,11 @@ router.get(
   authenticateUser,
   validate(searchTripSchema, ValidationTarget.QUERY),
   asyncHandler(searchTripsBetweenStopsController),
+);
+router.get(
+  '/info',
+  authenticateUser,
+  validate(getTripDetailSchema, ValidationTarget.QUERY),
+  asyncHandler(getTripDetailsWithAvailableSeatsController),
 );
 export default router;

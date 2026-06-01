@@ -36,3 +36,11 @@ export const findManyStopsByStopIds = async (stopIds: string[]): Promise<Stop[]>
   const stops = await prisma.stop.findMany({ where: { id: { in: stopIds } } });
   return stops;
 };
+
+export const findRouteStopsByRouteId = async (routeId: string): Promise<RouteStops[]> => {
+  const routeStops = await prisma.routeStops.findMany({
+    where: { routeId },
+    orderBy: { sequenceOrder: 'asc' },
+  });
+  return routeStops;
+};
