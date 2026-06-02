@@ -21,7 +21,7 @@ router.post(
   asyncHandler(createTripController),
 );
 router.get(
-  '/search/stops',
+  '/search',
   authenticateUser,
   validate(searchTripSchema, ValidationTarget.QUERY),
   asyncHandler(searchTripsBetweenStopsController),

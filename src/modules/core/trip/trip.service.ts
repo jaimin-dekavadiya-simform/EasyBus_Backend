@@ -113,9 +113,11 @@ export const getTripDetailsWithAvailableSeatsService = async (data: GetTripDetai
     mergedJourneyBitmask = intersection;
   }
   const totalAvailableSeats = (mergedJourneyBitmask.match(/1/g) || []).length;
+  const costMetrics = { baseFare: trip.baseFare, multipliers: trip.fareMultipliers };
   return {
     ...trip,
     metrics: {
+      costMetrics,
       calculatedDistance,
       calculatedTravelTime,
       totalAvailableSeats,

@@ -8,6 +8,7 @@ import {
   findManyStopsByStopIds,
   findRouteByLabelOrgId,
   findStopByName,
+  getAllStops,
 } from './route.repository';
 import { resolveOrgId } from '@/modules/core/auth/auth.utils';
 import { findOrganizationById } from '../organization/organization.repository';
@@ -85,4 +86,9 @@ export const createRouteService = async (
   });
 
   return route;
+};
+
+export const getAllStopsService = async (): Promise<Stop[]> => {
+  const stops = await getAllStops();
+  return stops;
 };

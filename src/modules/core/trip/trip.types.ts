@@ -24,6 +24,6 @@ export interface TripSegmentWithBitmap {
   toStopId: string;
   sequenceOrder: number;
   availableSeats: number;
-  seatBitmap: string; // Type-safe string mapping!
+  seatBitmap: string;
 }
 export type FullTripDetails = Prisma.TripGetPayload<FullTripDetailsArgs>;

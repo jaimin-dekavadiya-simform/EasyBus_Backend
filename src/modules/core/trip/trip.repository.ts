@@ -95,7 +95,7 @@ export const getTripSegmentsFromTripId = async (
       to_stop_id AS "toStopId",
       sequence_order AS "sequenceOrder",
       available_seats AS "availableSeats",
-      seat_bitmap::text AS "seatBitmap" -- Casts binary directly to text string!
+      seat_bitmap::text AS "seatBitmap" 
     FROM public.trip_segments 
     WHERE trip_id = ${tripId}::uuid 
     ORDER BY sequence_order ASC;
