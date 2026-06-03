@@ -14,22 +14,43 @@ export const findTripsBetweenStops = async (data: {
   end.setHours(23, 59, 59, 999);
 
   const result: SearchedTrip[] = await prisma.$queryRaw`
-  SELECT t.*,
-    (dst.distance_from_origin_km - src.distance_from_origin_km) as calculatedDistance,
-    (dst.travel_time_from_origin_min - src.travel_time_from_origin_min) as calculatedTravelTime,
-    (
-      SELECT MIN(ts.available_seats)
-      FROM trip_segments ts
-      WHERE ts.trip_id = t.id
-        AND ts.sequence_order >= src.sequence_order 
-        AND ts.sequence_order < dst.sequence_order
-    ) as totalAvailableSeats
+  SELECT
+  t.id,
+  t.label,
+  t.org_id AS "orgId",
+  t.route_id AS "routeId",
+  t.conductor_id AS "conductorId",
+  t.bus_id AS "busId",
+  t.driver_name AS "driverName",
+  t.driver_license AS "driverLicense",
+  t.departure_time AS "departureTime",
+  t.arrival_time AS "arrivalTime",
+  t.base_fare AS "baseFare",
+  t.total_seats AS "totalSeats",
+  t.status,
+  t.created_at AS "createdAt",
+  t.fare_multipliers AS "fareMultipliers",
+  src.travel_time_from_origin_min AS "SrcTravelTimeFromOrigin_Min",
+  dst.travel_time_from_origin_min AS "DstTravelTimeFromOrigin_Min",
+  (dst.distance_from_origin_km - src.distance_from_origin_km) AS "calculatedDistance",
+  (dst.travel_time_from_origin_min - src.travel_time_from_origin_min) AS "calculatedTravelTime",
+  (
+    SELECT MIN(ts.available_seats)
+    FROM trip_segments ts
+    WHERE ts.trip_id = t.id
+      AND ts.sequence_order >= src.sequence_order
+      AND ts.sequence_order < dst.sequence_order
+  ) AS "totalAvailableSeats"
 
-FROM route_stops src 
-JOIN route_stops dst ON src.route_id = dst.route_id 
-JOIN trips t ON t.route_id = src.route_id 
-WHERE src.stop_id = ${data.sourceId} 
-  AND dst.stop_id = ${data.destinationId} 
+FROM route_stops src
+JOIN route_stops dst
+  ON src.route_id = dst.route_id
+
+JOIN trips t
+  ON t.route_id = src.route_id
+
+WHERE src.stop_id = ${data.sourceId}
+  AND dst.stop_id = ${data.destinationId}
   AND src.sequence_order < dst.sequence_order
   AND t.departure_time < ${end}
   AND t.departure_time >= ${start}`;

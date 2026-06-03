@@ -46,3 +46,7 @@ export const getAllStops = async (): Promise<Stop[]> => {
   const stops = await prisma.stop.findMany();
   return stops;
 };
+export const findStopById = async (id: string): Promise<Stop | null> => {
+  const stop = await prisma.stop.findUnique({ where: { id } });
+  return stop;
+};

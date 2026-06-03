@@ -27,7 +27,7 @@ router.get(
   asyncHandler(searchTripsBetweenStopsController),
 );
 router.get(
-  '/info',
+  '/details',
   authenticateUser,
   validate(getTripDetailSchema, ValidationTarget.QUERY),
   asyncHandler(getTripDetailsWithAvailableSeatsController),

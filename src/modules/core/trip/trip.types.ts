@@ -1,11 +1,13 @@
 import { Prisma, Trip } from '@/generated/prisma/client';
 
 export type Duration = { start: Date; end: Date };
+
 export type SearchedTrip = Trip & {
-  calculatedDuration_Min: number;
-  calculatedDistance_Km: number;
-  totalAvailableSeats: number;
-  totalSeats: number;
+  calculatedDistance: number;
+  calculatedTravelTime: number;
+  SrcTravelTimeFromOrigin_Min: number;
+  DstTravelTimeFromOrigin_Min: number;
+  sourceName: string;
 };
 
 export type FullTripDetailsArgs = {

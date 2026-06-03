@@ -3,7 +3,7 @@ import { findOrganizationById } from '../organization/organization.repository';
 import { resolveOrgId } from '@/modules/core/auth/auth.utils';
 import { AuthUser, HttpStatusCode } from '@/types/utils.types';
 import ApiError from '@/utils/apiError';
-import { findManyStopsByStopIds, findRouteWithStopsById } from '../route/route.repository';
+import { findRouteWithStopsById, findStopById } from '../route/route.repository';
 import { CreateTripInput, GetTripDetailsInput, SearchTripInput } from './trip.validation';
 import { findUserWithTripsById } from '../user/user.repository';
 import { UserRoles } from '@/modules/core/user/user.types';
@@ -55,13 +55,32 @@ export const createTripService = async (data: CreateTripInput, user: AuthUser): 
 
 export const searchTripsBetweenStopsService = async (
   data: SearchTripInput,
-): Promise<SearchedTrip[]> => {
-  const existingStops = await findManyStopsByStopIds([data.sourceId, data.destinationId]);
-  if (existingStops.length !== 2) {
+): Promise<{
+  trips: SearchedTrip[];
+  metadata: {
+    sourceId: string;
+    sourceName: string;
+    destinationName: string;
+    destinationId: string;
+  };
+}> => {
+  const [source, destination] = await Promise.all([
+    findStopById(data.sourceId),
+    findStopById(data.destinationId),
+  ]);
+  if (!source || !destination) {
     throw new ApiError(HttpStatusCode.NOT_FOUND, 'Stops not found');
   }
   const trips = await findTripsBetweenStops(data);
-  return trips;
+  return {
+    trips: trips,
+    metadata: {
+      sourceId: source.id,
+      sourceName: source.name,
+      destinationId: destination.id,
+      destinationName: destination.name,
+    },
+  };
 };
 
 export const getTripDetailsWithAvailableSeatsService = async (data: GetTripDetailsInput) => {
