@@ -13,8 +13,7 @@ export type SearchedTrip = Trip & {
 export type FullTripDetailsArgs = {
   include: {
     organization: true;
-    route: { include: { routeStops: true } };
-    conductor: { select: { firstName: true; lastName: true } };
+    route: { include: { routeStops: { include: { stop: true } } } };
     bus: { include: { layout: true } };
     tripSegments: true;
   };

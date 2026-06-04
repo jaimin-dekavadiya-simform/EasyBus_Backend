@@ -97,8 +97,9 @@ export const getTripDetails = async (id: string): Promise<FullTripDetails | null
     where: { id },
     include: {
       organization: true,
-      route: { include: { routeStops: { orderBy: { sequenceOrder: 'asc' } } } },
-      conductor: { select: { firstName: true, lastName: true } },
+      route: {
+        include: { routeStops: { include: { stop: true }, orderBy: { sequenceOrder: 'asc' } } },
+      },
       bus: { include: { layout: true } },
       tripSegments: { orderBy: { sequenceOrder: 'asc' } },
     },
