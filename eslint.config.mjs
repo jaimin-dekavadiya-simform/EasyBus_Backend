@@ -28,7 +28,6 @@ export default [
           argsIgnorePattern: '^_',
         },
       ],
-      '@typescript-eslint/explicit-function-return-type': 'error',
     },
     ignores: ['dist', 'node_modules', 'prisma.config.ts', './src/generated/*', './src/seed/*'],
   },

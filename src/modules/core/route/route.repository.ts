@@ -14,7 +14,6 @@ export const createRoute = async (data: RouteUncheckedCreateInput): Promise<Rout
   const route = await prisma.route.create({ data });
   return route;
 };
-
 export const findRouteById = async (id: string): Promise<Route | null> => {
   const route = await prisma.route.findUnique({ where: { id } });
   return route;
@@ -35,4 +34,19 @@ export const findRouteWithStopsById = async (
 export const findManyStopsByStopIds = async (stopIds: string[]): Promise<Stop[]> => {
   const stops = await prisma.stop.findMany({ where: { id: { in: stopIds } } });
   return stops;
+};
+export const findRouteStopsByRouteId = async (routeId: string): Promise<RouteStops[]> => {
+  const routeStops = await prisma.routeStops.findMany({
+    where: { routeId },
+    orderBy: { sequenceOrder: 'asc' },
+  });
+  return routeStops;
+};
+export const getAllStops = async (): Promise<Stop[]> => {
+  const stops = await prisma.stop.findMany();
+  return stops;
+};
+export const findStopById = async (id: string): Promise<Stop | null> => {
+  const stop = await prisma.stop.findUnique({ where: { id } });
+  return stop;
 };

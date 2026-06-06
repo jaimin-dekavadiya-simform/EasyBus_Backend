@@ -5,7 +5,11 @@ import { Router } from 'express';
 import { createRouteSchema, createStopSchema } from './route.validation';
 import { ValidationTarget } from '@/types/utils.types';
 import { asyncHandler } from '@/utils/asyncHandler';
-import { createRouteController, createStopController } from './route.controller';
+import {
+  createRouteController,
+  createStopController,
+  getAllStopsController,
+} from './route.controller';
 
 const router = Router();
 
@@ -16,6 +20,7 @@ router.post(
   validate(createStopSchema, ValidationTarget.BODY),
   asyncHandler(createStopController),
 );
+router.get('/stop', authenticateUser, asyncHandler(getAllStopsController));
 router.post(
   '/create',
   authenticateUser,

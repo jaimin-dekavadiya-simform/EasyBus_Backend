@@ -26,7 +26,9 @@ const LayoutItemSchema = z.object({
     .positive('Column span must be at least 1')
     .default(1),
 });
-
+const LayoutItemSchemaInjected = LayoutItemSchema.extend({
+  bitIndex: z.number().int().nonnegative().optional(),
+});
 export const SeatLayoutSchema = z.object({
   layoutName: z.string().min(1, 'Layout Name is Required'),
   config: z.object({
@@ -51,8 +53,12 @@ export const SeatLayoutSchema = z.object({
 export const SeatLayoutSchemaInjected = SeatLayoutSchema.extend({
   config: SeatLayoutSchema.shape.config.extend({
     totalSeats: z.number().int('Total seats must be an integer'),
+    decks: z.object({
+      lower: z.array(LayoutItemSchemaInjected),
+      upper: z.array(LayoutItemSchemaInjected).optional(),
+    }),
   }),
 });
-
 export type SeatLayoutInput = z.infer<typeof SeatLayoutSchema>;
 export type SeatLayoutInjectedInput = z.infer<typeof SeatLayoutSchemaInjected>;
+export type LayoutItemInjectedInput = z.infer<typeof LayoutItemSchemaInjected>;
