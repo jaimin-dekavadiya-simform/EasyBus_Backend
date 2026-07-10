@@ -1,0 +1,114 @@
+================================================================================
+APPLICATION TEST DATA & ROUTING ENVIRONMENT GUIDE
+================================================================================
+
+This document outlines the test data provisioned in the database via the seed 
+script. Use these records to test authentication, booking flows, route planning, 
+and your routing algorithm.
+
+--------------------------------------------------------------------------------
+1. TEST ACCOUNTS
+--------------------------------------------------------------------------------
+Use these credentials to test role-specific functionalities. (Use the default 
+password configured in your seeding script).
+
+* Super Admin: superadmin@gmail.com (Full system access)
+* Org Admin: orgadmin1@gmail.com (Tenant: SIM001 - Simform)
+* Conductor 1: conductor1@gmail.com (Employee SIMCD1)
+* Conductor 2: conductor2@gmail.com (Employee SIMCD2)
+* Conductor 3: conductor3@gmail.com (Employee SIMCD3)
+* Conductor 4: conductor4@gmail.com (Employee SIMCD4)
+* Passenger: jashdekavadiya@gmail.com (Unverified user for OTP/verification tests)
+
+--------------------------------------------------------------------------------
+2. BUS FLEET & LAYOUTS
+--------------------------------------------------------------------------------
+* GJ01TR1000 | SEATER  | Traveller               | 20 Seats
+* GJ01AB1001 | SEATER  | Standard 2x2 Seater     | 40 Seats
+* GJ01AB1002 | SLEEPER | Premium 2x1 Sleeper     | 30 Seats
+* GJ01AB1003 | SEATER  | Executive 1x2 Seater    | 24 Seats
+* GJ01AB1004 | SLEEPER | Hybrid Seater & Sleeper | 50 Seats
+* GJ01AB1005 | SLEEPER | VIP 1x1 Sleeper         | 20 Seats
+
+--------------------------------------------------------------------------------
+3. ROUTING ALGORITHM TEST DATA
+--------------------------------------------------------------------------------
+Below is the extracted routing data, mapped to trips with the exact sequence of 
+stops, cumulative distances (km), and travel times (minutes). All dates are 
+seeded for June 2026.
+
+ROUTE A: Palanpur to Surat
+Trips: 
+- Jun 2, 2026 08:00 AM (GJ01TR1000, Base: ₹600)
+- Jun 2, 2026 02:00 PM (GJ01AB1001, Base: ₹600)
+Stops Sequence:
+1. Palanpur      (0 km / 0 min)
+2. Mehsana       (+65 km / +75 min)
+3. Ahmedabad     (+75 km / +90 min)  -> Cumulative: 140 km / 165 min
+4. Vadodara      (+110 km / +120 min)-> Cumulative: 250 km / 285 min
+5. Surat         (+150 km / +180 min)-> Cumulative: 400 km / 465 min
+
+ROUTE B: Ahmedabad to Porbandar
+Trips: 
+- Jun 3, 2026 07:00 AM (GJ01AB1003, Base: ₹450)
+Stops Sequence:
+1. Ahmedabad     (0 km / 0 min)
+2. Rajkot        (+215 km / +240 min)
+3. Jamnagar      (+90 km / +110 min) -> Cumulative: 305 km / 350 min
+4. Porbandar     (+120 km / +135 min)-> Cumulative: 425 km / 485 min
+
+ROUTE C: Ahmedabad to Bhuj
+Trips: 
+- Jun 4, 2026 10:00 PM (GJ01AB1004, Base: ₹700)
+Stops Sequence:
+1. Ahmedabad     (0 km / 0 min)
+2. Surendranagar (+130 km / +150 min)
+3. Morbi         (+85 km / +90 min)  -> Cumulative: 215 km / 240 min
+4. Gandhidham    (+140 km / +160 min)-> Cumulative: 355 km / 400 min
+5. Bhuj          (+60 km / +70 min)  -> Cumulative: 415 km / 470 min
+
+ROUTE D: Central Gujarat Local
+Trips: 
+- Jun 2, 2026 10:30 AM (GJ01AB1002, Base: ₹150)
+Stops Sequence:
+1. Ahmedabad     (0 km / 0 min)
+2. Nadiad        (+60 km / +75 min)
+3. Anand         (+20 km / +30 min)  -> Cumulative: 80 km / 105 min
+4. Vadodara      (+45 km / +55 min)  -> Cumulative: 125 km / 160 min
+
+ROUTE E: Bhuj to Veraval
+Trips: 
+- Jun 5, 2026 11:00 PM (GJ01AB1005, Base: ₹800)
+Stops Sequence:
+1. Bhuj          (0 km / 0 min)
+2. Gandhidham    (+60 km / +70 min)
+3. Morbi         (+140 km / +160 min)-> Cumulative: 200 km / 230 min
+4. Rajkot        (+65 km / +80 min)  -> Cumulative: 265 km / 310 min
+5. Junagadh      (+105 km / +125 min)-> Cumulative: 370 km / 435 min
+6. Veraval       (+90 km / +110 min) -> Cumulative: 460 km / 545 min
+
+ROUTE F: Palanpur to Ahmedabad
+Trips: 
+- Jun 2, 2026 09:00 AM (GJ01TR1000, Base: ₹250)
+Stops Sequence:
+1. Palanpur      (0 km / 0 min)
+2. Mehsana       (+65 km / +75 min)
+3. Gandhinagar   (+60 km / +70 min)  -> Cumulative: 125 km / 145 min
+4. Ahmedabad     (+30 km / +45 min)  -> Cumulative: 155 km / 190 min
+
+ROUTE G: Ahmedabad to Palitana
+Trips: 
+- Jun 3, 2026 08:30 AM (GJ01AB1001, Base: ₹350)
+Stops Sequence:
+1. Ahmedabad     (0 km / 0 min)
+2. Botad         (+150 km / +170 min)
+3. Bhavnagar     (+90 km / +105 min) -> Cumulative: 240 km / 275 min
+4. Palitana      (+55 km / +65 min)  -> Cumulative: 295 km / 340 min
+
+--------------------------------------------------------------------------------
+4. ALGORITHM TESTING CHECKLIST
+--------------------------------------------------------------------------------
+[ ] Directionality: Ensure search for Surat -> Palanpur returns empty on Route A.
+[ ] Sub-Routes: Search Ahmedabad -> Vadodara should yield Route A AND Route D.
+[ ] Weight Deltas: Verify fare/distance logic (e.g., Mehsana to Vadodara on 
+    Route A should accurately calculate as 185km).
